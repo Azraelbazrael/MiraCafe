@@ -1,0 +1,126 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 816, in script call
+    call opening_hours
+  File "game/script.rpy", line 2792, in script call
+    call week_events
+  File "game/script.rpy", line 2079, in script call
+    call stat_events
+  File "game/script.rpy", line 1740, in script call
+    call mad_help
+  File "game/script.rpy", line 1943, in script call
+    call .not_really
+  File "game/script.rpy", line 812, in script call
+    call day
+  File "game/script.rpy", line 2765, in script call
+    call screen opening_options
+  File "game/script.rpy", line 2391, in script call
+    call ice_cream_action
+  File "game/script.rpy", line 2681, in script
+    $ Ice_cream.holy_switcher()
+  File "game/script.rpy", line 2681, in <module>
+    $ Ice_cream.holy_switcher()
+  File "game/script.rpy", line 397, in holy_switcher
+    Ice_cream.success()
+  File "game/script.rpy", line 367, in success
+    nar2("Yum!")
+  File "game/action_stats.rpy", line 261, in execute
+    screen ice_cream_action():
+  File "game/action_stats.rpy", line 261, in execute
+    screen ice_cream_action():
+  File "game/action_stats.rpy", line 263, in execute
+    frame:
+  File "game/action_stats.rpy", line 265, in execute
+    vbox:
+  File "game/action_stats.rpy", line 266, in execute
+    vpgrid:
+  File "game/action_stats.rpy", line 283, in execute
+    bar:
+  File "renpy/common/00barvalues.rpy", line 82, in get_adjustment
+    self.adjustment = ui.adjustment(value=self.value, range=self.range, adjustable=False)
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 816, in script call
+    call opening_hours
+  File "game/script.rpy", line 2792, in script call
+    call week_events
+  File "game/script.rpy", line 2079, in script call
+    call stat_events
+  File "game/script.rpy", line 1740, in script call
+    call mad_help
+  File "game/script.rpy", line 1943, in script call
+    call .not_really
+  File "game/script.rpy", line 812, in script call
+    call day
+  File "game/script.rpy", line 2765, in script call
+    call screen opening_options
+  File "game/script.rpy", line 2391, in script call
+    call ice_cream_action
+  File "game/script.rpy", line 2681, in script
+    $ Ice_cream.holy_switcher()
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\ast.py", line 823, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 2681, in <module>
+    $ Ice_cream.holy_switcher()
+  File "game/script.rpy", line 397, in holy_switcher
+    Ice_cream.success()
+  File "game/script.rpy", line 367, in success
+    nar2("Yum!")
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\character.py", line 1394, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\character.py", line 1045, in do_display
+    display_say(who,
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\character.py", line 741, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\ui.py", line 301, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\core.py", line 2165, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\core.py", line 2687, in interact_core
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\displayable.py", line 431, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\displayable.py", line 431, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\displayable.py", line 431, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\screen.py", line 480, in visit_all
+    callback(self)
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\core.py", line 2687, in <lambda>
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\screen.py", line 491, in per_interact
+    self.update()
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\screen.py", line 697, in update
+    self.screen.function(**self.scope)
+  File "game/action_stats.rpy", line 261, in execute
+    screen ice_cream_action():
+  File "game/action_stats.rpy", line 261, in execute
+    screen ice_cream_action():
+  File "game/action_stats.rpy", line 263, in execute
+    frame:
+  File "game/action_stats.rpy", line 265, in execute
+    vbox:
+  File "game/action_stats.rpy", line 266, in execute
+    vpgrid:
+  File "game/action_stats.rpy", line 283, in execute
+    bar:
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\sl2\sldisplayables.py", line 262, in sl2bar
+    return renpy.display.behavior.Bar(range, value, width, height, vertical=False, **properties)
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\behavior.py", line 2189, in __init__
+    adjustment = value.get_adjustment()
+  File "renpy/common/00barvalues.rpy", line 82, in get_adjustment
+    self.adjustment = ui.adjustment(value=self.value, range=self.range, adjustable=False)
+  File "C:\Users\sunda\OneDrive\Desktop\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\behavior.py", line 1942, in __init__
+    self._value = type(range)(value) # type: ignore
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+
+Windows-10-10.0.22631 AMD64
+Ren'Py 8.2.1.24030407
+Miracle Cafe 1.0
+Sat Sep 28 21:38:13 2024
