@@ -2153,7 +2153,7 @@ label .food_fight:
     window hide
     #put cg here
     show Tam_r_u_fuckin_srs_rn
-    with dissolve
+    with Dissolve (0.2)
     pause 
     play music "audio/hajimetenookashidukuri.mp3"
     MD "I think that's a no."
