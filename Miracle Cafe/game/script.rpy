@@ -598,6 +598,7 @@ image char_meet_2 = "images/char_meet_2.png"
 image mad_door_1 = "images/mad_door_1.png"
 image mad_door_2 = "images/mad_door_2.png"
 
+image Tam_r_u_fuckin_srs_rn = "images/Tam_srs.png"
 ## --char event flags
 
 
@@ -2149,7 +2150,10 @@ label .food_fight:
     CH "hey! Blaze! Blaze, Blaze, Blaze! You're an expert, right?"
     CH "Is ketchup a soup?"
     stop music
+    window hide
     #put cg here
+    show Tam_r_u_fuckin_srs_rn
+    with dissolve
     pause 
     play music "audio/hajimetenookashidukuri.mp3"
     MD "I think that's a no."
