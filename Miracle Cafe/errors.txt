@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/action_stats.rpy", line 270: 'Holiness' is not a keyword argument or valid child of the text statement.
-    text " [Self_stats.get("Holiness")]"
-                                    ^
+File "game/script.rpy", line 564: expected 'simple_expression' not found.
+    linear 0.2 xzoom 1 yzoom 
+                             ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Sun Sep 29 00:06:00 2024
+Wed Oct  2 22:56:14 2024

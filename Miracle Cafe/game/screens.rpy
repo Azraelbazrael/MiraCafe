@@ -251,7 +251,7 @@ screen quick_menu():
             style_prefix "quick"
             xsize 600 ysize 193
             xalign 0.015
-            yalign 0.25
+            yalign 0.26
             background Image ("gui/quick_button_frame.png")
             vbox:
                 spacing 20

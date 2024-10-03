@@ -17,8 +17,8 @@ define Mo = Character("Moira")
 define GY = Character("Gal Pals", image="Gyaru")
 
 #default holiness = 100
-default Work_stats = { "Reputatn.": 30, "Clean":30, "Cuisine": 30, "Charm": 50}
-default Self_stats = {"Holiness": 100, "Social" : 50, "Fitness": 40, "Smarts": 50, "Stylish" : 50}
+default Work_stats = { "Reputatn.": 30, "Clean":30, "Cuisine": 30, "Charm": 50 }
+default Self_stats = { "Holiness": 100, "Social" : 50, "Fitness": 40, "Smarts": 50, "Stylish" : 50 }
 
 
 define day_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -549,6 +549,21 @@ init:
     transform flip:
         xzoom -1.0
 
+transform squash:
+    #xanchor 0.99
+    #
+    xzoom 1.05 yzoom 0.9 xoffset 0.5
+    ease 0.2 xzoom 0.95 yzoom 1.05 xoffset 0
+    linear 0.2 xzoom 1 yzoom 1 xoffset 0
+
+transform squish:
+    #xanchor 0.99
+    #
+    xzoom 0.95 yzoom 1.1
+    linear 0.15 xzoom 1.05 yzoom 0.9 
+    linear 0.15 xzoom 0.9 yzoom 1.1
+    linear 0.2 xzoom 1 yzoom 1
+
 image cafe_lobby_close = "images/Cafe_interior_2.png"
 
 image side Ambrosia default = "images/Ambrosia_side.png"
@@ -566,8 +581,69 @@ image side Tamura blush = "images/Tamura_blush.png"
 image side Tamura hes = "images/Tamura_hesitant.png"
 image side Tamura scream = "images/Tamura_scream.png"
 
+layeredimage Tamura default:
+    always "images/stand_sprites/tam_stand_default.png"
+    group dress:
+        ypos 410
+        xsize 1145 ysize 650
+        attribute summer default:
+            "images/stand_sprites/tam_def_summer.png"
 
+layeredimage Tamura proud:
+    always "images/stand_sprites/tam_stand_proud.png"
+    group dress:
+        ypos 410
+        xsize 1145 ysize 650
+        attribute summer default:
+            "images/stand_sprites/tam_summer_proud.png"
 
+layeredimage Tamura blush:
+    always "images/stand_sprites/tam_stand_default.png"
+    
+    group dress:
+        ypos 410
+        xsize 1145 ysize 650
+        attribute summer default:
+            "images/stand_sprites/tam_def_summer.png"
+    group face:
+        xpos 450
+        ypos 330
+        attribute summer default:
+            "images/stand_sprites/tam_blush.png"
+
+layeredimage Tamura scream:
+    
+    group hair:
+        ypos 360
+        attribute hype:
+            "images/stand_sprites/tam_hair_scream_hype.png"
+
+    always:
+        ypos 820
+        xpos 100
+        "images/stand_sprites/tam_body_scream.png"
+    
+    
+    group arms:
+        ypos 820
+        attribute hype:
+            "images/stand_sprites/tam_arms_scream_hype.png"
+    group clothes:
+        ypos 720
+        attribute hype_summer:
+            "images/stand_sprites/tam_summer_scream_hype.png"
+    group head:
+        ypos 550
+        xpos 370
+        attribute hype:
+            "images/stand_sprites/tam_head_scream_hype.png"
+            
+    
+layeredimage Tamura hes:
+    always "images/stand_sprites/tam_stand_hesitant.png"
+    group clothes:
+        attribute summer default:
+            "images/stand_sprites/tam_hes_summer.png" 
 
 image side Charon default = "images/Charon_default.png"
 image side Charon aww = "images/Charon_aww.png"
@@ -1775,10 +1851,19 @@ label tam_help:
     with bites
     $ energy -= 1
     play music "audio/hajimetenookashidukuri.mp3" fadein 1.0 fadeout 1.0
-    show Tamura at right
+    show Tamura scream hype hype_summer:
+        xalign 1.0 yalign 1.0 
+        linear 0.1 xalign 1.09
+        linear 0.1 xalign 1.0
+        linear 0.1 xalign 1.09
+        ease 0.3 xalign 1.0
+        
+    $ renpy.pause(0.2, hard=True)
     TM scream "AH!!"
-    with vpunch
-    TM blush "You-- scared me, Ambrosia... You should really be knockin' first, y'know?"
+
+    show Tamura at right, squash
+    TM hes "You-- scared me, Ambrosia... You should really be knockin' first, y'know?"
+
     menu:
         "Just wanting to practice, haha!":
             call .practice_haha
@@ -1804,14 +1889,16 @@ label .apologize:
 
 label .practice_haha:
     $ tam_cook == True
+    show Tamura proud at right, squish
     TM proud "YEAHHH! Practice makes PERFECT!!"
     nar2 "Chest high in the air, Tamura's roar bellowed through the walls."
-    $ Total_affec["Madoc"] += 5
+    $ Total_affec["Tamura"] += 5
     TM default "Hows about where your skill levels at? Maybe I could whip up a thing or two with ya for good measure!"
     nar2 "From what Ambrosia's read, in this town, standards are lower than the 7th circle of hell itself. In fact, the bottom half of his passionate little resume showed with a bit of loreum ipsum."
     nar2 "Perhaps he got points for making it entirely handwritten."
     amb1 happy  "Absolutely zero, Mr. Tamura!"
     nar2 "Such proud claims were only highlighted further by another grin stretched across him."
+    show Tamura proud at squash
     TM proud "WELL! In that case, Y'caught me at a good time, see? I was just about to set up the recipes up here. We're all fresh, y'know?"
     amb1 default "I mean...What else is there?"
     TM proud "Ex-act-ly! Frozen food never has the hard labour of love poured into it!"
@@ -1819,13 +1906,26 @@ label .practice_haha:
     
 
 label .practive_haha_cont:
-    with dissolve
+    camera:
+        xalign 0.6 yalign 0.4
+        xzoom 1.2 yzoom 1.2
+        
+    with dissolve 
     nar2 "Soon enough, large bags of flour, buttermilk and yeast gets lifted in."
+    
+    show image Solid("#fff")
+    with Dissolve(0.2)
+    show Tamura proud at center, squash
+    with Dissolve(0.2)
     nar2 "With a hefty PLOMP, powder scattered through the air like fine pixie dust, coloring the atmosphere in a pale hue."
+    
+    show Tamura proud at center
     TM proud "Alright, this should be pretty simple! it's honey glazed donuts! it's pretty much just bread with a couple or so extra steps, yeah?"
     amb1 "...Right!"
     nar2 "True to his words, Ambrosia hasn't had a lick of knowledge for human cuisine."
     nar2 "Not apart from it's status as one of the many gateways to the heart, that is."
+    scene cute stuffs
+    with dissolve
     TM "I'll start up the fryer, 'n everything's written on that board over there! easy peasy!"
     nar2 "The angel watched the other reach to set the strange bowl, filling the cauldron with a greasy elixr."
     nar2 "eggs, yeast, nutmeg... sugar, vanilla... milk.... and just a pinch of salt."
@@ -1833,18 +1933,19 @@ label .practive_haha_cont:
     amb1 happy "Oh..? Oh! Yes, I think so!"
     nar2 "Determined, Ambrosia made a show of himself, stringing together all his might."
     nar2 "bits of batter fly across the countertops, hands unwielding for even a moment."
-    TM default "WOAH?! woah! Okay, okay, I think you're overmixing a little bit--!"
+    TM blush "WOAH?! woah! Okay, okay, I think you're overmixing a little bit--!"
     amb1 "I-- I am?"
     TM "Just a little bit..."
-    TM "Hey, hey! Don't sweat it, I remembered the towels!"
+    TM proud "Hey, hey! Don't sweat it, I remembered the towels!"
     nar2 "On top of the raw dough, Ambrosia was quickly caked by a towel- well meaning rough-housing keeping him in place."
     TM proud "There! I think I got all of it!"
     play music "audio/houkagonoyuzora.mp3" fadein 1.0 fadeout 1.0
     TM default "Don't worry, the process usually isn't this... messy... I think you got a little something--uh..."
+    scene finger thing
     nar2 "Tamura's hand makes it's way towards Ambrosia's cheek."
     nar2 "Ambrosia stills once more, avoiding the other's eyes with every inch of his being."
     nar2 "It's a gentle graze, his thumb. Not something you'd expect for such rough hands. Somehow, Ambrosia felt his chest flutter."
-    TM "Er- Don't take this the the wrong way, but you should really join me at the gym..."
+    TM hes "Er- Don't take this the the wrong way, but you should really join me at the gym..."
     extend " I'd love to get a look at your routine! hahah!"
     TM hes "..."
     TM "UHM!"

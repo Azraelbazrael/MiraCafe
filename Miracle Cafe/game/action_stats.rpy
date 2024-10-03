@@ -53,7 +53,7 @@ screen cook_action():
                 bar:
                     value AnimatedValue(Self_stats.get("Holiness"),200)
 
-                text " [H]"
+                text " [Self_stats.get('Holiness')]"
                 text "Cuisine:"
                 bar:
                     value AnimatedValue(Work_stats.get("Cuisine") ,200)

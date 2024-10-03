@@ -1,30 +1,24 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 2156, in script
-    with dissolve (1.0)
-TypeError: 'Dissolve' object is not callable
+  File "game/script.rpy", line 1869, in script call
+    call .practice_haha
+  File "game/script.rpy", line 888, in script
+    if energy >= 3:
+Exception: Possible infinite loop.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 2156, in script
-    with dissolve (1.0)
-  File "C:\Game Dev Stuff\renpy-8.2.1-sdk\renpy\ast.py", line 1363, in execute
-    renpy.exports.with_statement(trans, paired=paired)
-  File "C:\Game Dev Stuff\renpy-8.2.1-sdk\renpy\exports.py", line 1781, in with_statement
-    return renpy.game.interface.do_with(trans, paired, clear=clear)
-  File "C:\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\core.py", line 1548, in do_with
-    return self.interact(trans_pause=True,
-  File "C:\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\core.py", line 2165, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\core.py", line 2608, in interact_core
-    trans = instantiate_transition(None, old_root, layers_root)
-  File "C:\Game Dev Stuff\renpy-8.2.1-sdk\renpy\display\core.py", line 2518, in instantiate_transition
-    trans = self.ongoing_transition[layer](
-TypeError: 'Dissolve' object is not callable
+  File "game/script.rpy", line 1869, in script call
+    call .practice_haha
+  File "game/script.rpy", line 888, in script
+    if energy >= 3:
+  File "C:\Game Dev Stuff\renpy-8.2.1-sdk\renpy\execution.py", line 61, in check_infinite_loop
+    raise Exception("Possible infinite loop.")
+Exception: Possible infinite loop.
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.1.24030407
 Miracle Cafe 1.0
-Mon Sep 30 16:49:41 2024
+Wed Oct  2 23:13:34 2024
