@@ -23,15 +23,15 @@ screen day_display():
         #xalign 0.05 yalign 0.1
         xsize 600 ysize 236
         hbox:
-            xalign 0.2 yalign 0.33
+            xalign 0.23 yalign 0.43
             text "[current_month +7] " style "month_display"
         hbox:
             style_prefix "day_display"
-            spacing 3
-            box_wrap True
-            xsize 230 ysize 70
             
-            xalign 0.7 yalign 0.43
+            box_wrap True
+            xsize 310 ysize 70
+            
+            xalign 0.9 yalign 0.43
             text "[day_of_week[current_day]]" 
             text " [month_day]" 
             #text "Total days [total_days]"

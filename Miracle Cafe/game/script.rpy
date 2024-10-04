@@ -4,17 +4,17 @@
 # name of the character.
 
 #define nar = Character(None, kind=nvl, what_color="#FFFF")
-define nar2 = Character(None, what_ypos=65 )
-define amb1 = Character("Ambrosia", image="Ambrosia")
-define TM = Character("Tamura", image="Tamura")
-define CH = Character ("Charon", image="Charon")
-define MD = Character("Madoc", image="Madoc")
-define LY = Character("Lyra")
-define HV = Character("Harvey")
-define huh = Character("???")
-define huhbegin = Character("???", image="Ambrosia")
-define Mo = Character("Moira")
-define GY = Character("Gal Pals", image="Gyaru")
+define nar2 = Character(None, what_ypos=65 , ctc="ctc_heart", ctc_position="nestled")
+define amb1 = Character("Ambrosia", image="Ambrosia", ctc="ctc_heart", ctc_position="nestled")
+define TM = Character("Tamura", image="Tamura", ctc="ctc_heart", ctc_position="nestled")
+define CH = Character ("Charon", image="Charon", ctc="ctc_heart", ctc_position="nestled")
+define MD = Character("Madoc", image="Madoc", ctc="ctc_heart", ctc_position="nestled")
+define LY = Character("Lyra", ctc="ctc_heart", ctc_position="nestled")
+define HV = Character("Harvey", ctc="ctc_heart", ctc_position="nestled")
+define huh = Character("???", ctc="ctc_heart", ctc_position="nestled")
+define huhbegin = Character("???", image="Ambrosia", ctc="ctc_heart", ctc_position="nestled")
+define Mo = Character("Moira", ctc="ctc_heart", ctc_position="nestled")
+define GY = Character("Gal Pals", image="Gyaru", ctc="ctc_heart", ctc_position="nestled")
 
 #default holiness = 100
 default Work_stats = { "Reputatn.": 30, "Clean":30, "Cuisine": 30, "Charm": 50 }
@@ -32,7 +32,7 @@ default current_month = 0
 default energy = 3
 
 define bites = ImageDissolve("transitions/old/bites.webp", 1.5, ranplen= 36)
-
+define flash = Fade(1.1, 0.0, 0.5, color="#fff")
 
 default money = 0
 
@@ -556,15 +556,22 @@ transform squash:
     ease 0.2 xzoom 0.95 yzoom 1.05 xoffset 0
     linear 0.2 xzoom 1 yzoom 1 xoffset 0
 
-transform squish:
-    #xanchor 0.99
-    #
-    xzoom 0.95 yzoom 1.1
-    linear 0.15 xzoom 1.05 yzoom 0.9 
-    linear 0.15 xzoom 0.9 yzoom 1.1
-    linear 0.2 xzoom 1 yzoom 1
+transform open_squish:
+    xzoom 1.1 yzoom 0.1
+    ease 0.2 xzoom 1.05 yzoom 1.1
+    ease 0.2 xzoom 1 yzoom 1 
 
-image cafe_lobby_close = "images/Cafe_interior_2.png"
+transform zoomie:
+    xzoom 1.1 yzoom 1.1
+
+
+image ctc_heart:
+    "gui/feather_ctc.png"
+    yalign 0.5
+    ease 0.2 yalign 1
+    linear 0.2 yalign 0.5
+    repeat
+
 
 image side Ambrosia default = "images/Ambrosia_side.png"
 image side Ambrosia happy = "images/Ambrosia_happy.png"
@@ -660,13 +667,18 @@ image side Madoc shock = "images/Madoc_Shocked.png"
 
 image side Gyaru 1 = "images/camreon_side.png"
 image side Gyaru 2 = "images/damon_side.png"
+
 ### - backgrounds
 image amb_bed = "images/Ambrosia_bedroom.png"
 image upstairs = "images/Upstairs_hallway.png"
 image kitchen = "images/Kitchen_background.png"
+image dot_bg = "images/dot_background.png"
+image cafe_lobby_close = "images/Cafe_interior_2.png"
 ## -- char CGs
 image tam_box1 = "images/tam_box1.png"
 image tam_box2 = "images/tam_box2.png"
+image cauldron = "images/cauldron_cg.png"
+image deep_fry = "images/grab_deepfry_cg.png"
 
 image char_meet_1 = "images/char_meet_1.png"
 image char_meet_2 = "images/char_meet_2.png"
@@ -791,7 +803,9 @@ label begin:
     hide char_meet_1
     show char_meet_2
     with dissolve
-    CH default "Hihi! I'm Charon, you're new roomate! ...Housemate? Housemate!"
+    CH default "Hihi! I'm Charon, you're new roomate!"
+    CH  "...Housemate?"
+    CH "Housemate!"
     nar2 "Angel's nectar fled to ambrosia's cheeks, bewildered. A hard grin in place before he even realised."
     CH "You HAVE to come with me, Madoc said he wanted to say hi personally! You HAVE to let me tour you around!"
 
@@ -834,7 +848,8 @@ label begin:
     amb1 "What? No, no no!! I really appreciated it!!"
     amb1 happy "thank you!"
     nar2 "Graciously, he bowed. Charon only shares a delighted giggle in response."
-    CH aww "I'll be out of your hair in a pinch, anyhow. I like, covered all your bases..."
+    CH aww "I'll be out of your hair in a pinch, anyhow."
+    CH  "I like, covered all your bases..."
     CH default "You're free to explore more! Just.. Don't explode, alright?"
 
     play sound "audio/460542__coosemek__door-creak.mp3"
@@ -846,7 +861,8 @@ label begin:
     nar2 "Slowly, Ambrosia paced to his own door, unveiling it as carefully as the enterance."
     nar2 "Just beyond his nose, the angel was presented with a small room, a single bed tucked into the corner."
     nar2 "the room's other corners made home for small arachnids, intricate webs lacing the two surfaces, dust caking the floors."
-    nar2 "Ambrosia scanned ceilings and walls, each plane dressed snug with grease and cracks. His hand gently grazes the surface, a curiosity embued in his very finger tips."
+    nar2 "Ambrosia scanned ceilings and walls, each plane dressed snug with grease and cracks."
+    nar2 "His hand gently grazes the surface, a curiosity embued in his very finger tips."
     nar2 "For 6 months and 7 and a half days, this quaint and delightfully human area was his home."
     play sound "audio/656366__straynerd__falling-on-mattress-owi.mp3"
     nar2 "Flopping back first onto the bed, a firm embrace of the mattress greeting his sides."
@@ -1581,7 +1597,7 @@ label tam_door:
     scene upstairs
     $ current_topic = ""
     
-    if Total_affec["Madoc"] >= 80:
+    if Total_affec["Tamura"] >= 80:
 
         TM "WOA-ho-hoh, it's you, Bro-sia! You need anything?"
         menu:
@@ -1593,7 +1609,7 @@ label tam_door:
                 call tam_room
                 
 
-    elif Total_affec["Madoc"] >= 50:
+    elif Total_affec["Tamura"] >= 50:
         TM "Heyyyyy, Ambrosia! What's up?"
         menu:
             "The sky, silly!":
@@ -1625,7 +1641,7 @@ label tam_room:
     
 
 label .Favorite_artist:
-        $ Total_affec["Madoc"] += 2
+        $ Total_affec["Tamura"] += 2
         nar2 "Tamura cushions himself further into the bed, holding his head in his palm."
         TM proud "Art, is like... Everything!! If it's made by human hands it's gotta be some kinda art, yeah?"
         amb1 default "Even working the kitchen...?"
@@ -1644,7 +1660,7 @@ label .Favorite_artist:
         return
 
 label .Sweet_or_sour_foods:
-        $ Total_affec["Madoc"] += 2
+        $ Total_affec["Tamura"] += 2
         TM hes "Nooo... Don't make me pick one...."
         amb1 ugh "Was it something I said???"
         TM "It's not that, sweet and sour flavors have their time AND their place!"
@@ -1663,6 +1679,7 @@ label .Sweet_or_sour_foods:
         return
     
 label .Favorite_meal:
+    $ Total_affec["Tamura"] += 2
     TM proud "Oh, this? This one's easy! no contest!"
     TM scream "TANTAMEN RAMEN!!"
     with vpunch
@@ -1678,7 +1695,7 @@ label .Favorite_meal:
     return
 
 label .Inspiration:
-    $ Total_affec["Madoc"] += 2
+    $ Total_affec["Tamura"] += 2
     TM hes "Would it cheap to say... uh-- everyone here?"
     amb1 "Huh, how so?"
     TM default "Well, customers, they come in, and they leave with a smile on their face..."
@@ -1694,7 +1711,7 @@ label .Inspiration:
     return
 
 label .Weather:
-    $ Total_affec["Madoc"] += 2
+    $ Total_affec["Tamura"] += 2
     TM default "Well, I mean it's real hot..."
     TM  proud "Really gets the blood pumpin' don't it!"
     amb1 ugh "That's one way to put it..."
@@ -1711,7 +1728,7 @@ label .Weather:
     return
 
 label .Mystery_Customer:
-    $ Total_affec["Madoc"] += 5
+    $ Total_affec["Tamura"] += 5
     TM hes "So I wasn't hallucinating..."
     TM "He's really here..."
     TM "'is name's Harvey, yeah?"
@@ -1741,7 +1758,7 @@ label rest_action:
 label cook_action:
     play sound "audio/MenuSFX/MP3/Abstract/abs-confirm-1.mp3"
     if tam_helped == True:
-        $ Total_affec["Madoc"] +=1
+        $ Total_affec["Tamura"] +=1
     call stats_action
     $ Cook.holy_switcher()
     
@@ -1847,18 +1864,21 @@ label harvey_meet:
     return
 
 label tam_help:
+    camera:
+        xzoom 1.1 yzoom 1.1
+        xalign 0.56
     scene kitchen 
     with bites
     $ energy -= 1
-    play music "audio/hajimetenookashidukuri.mp3" fadein 1.0 fadeout 1.0
+    play music "audio/hajimetenookashidukuri.mp3" fadeout 1.0
+    
     show Tamura scream hype hype_summer:
         xalign 1.0 yalign 1.0 
         linear 0.1 xalign 1.09
         linear 0.1 xalign 1.0
         linear 0.1 xalign 1.09
         ease 0.3 xalign 1.0
-        
-    $ renpy.pause(0.2, hard=True)
+    with vpunch
     TM scream "AH!!"
 
     show Tamura at right, squash
@@ -1874,45 +1894,52 @@ label tam_help:
     return
 
 label .apologize:
-   
+    show Tamura at right, squash
     TM "WOAH! Okay, there's... uh... No need for all that."
-    TM "C'mon, now! We're all boys here!"
+    show Tamura proud at right, squash
+    TM proud "C'mon, now! We're all boys here!"
+    
     TM " 's a safe space 'n all that. No need for sorries, yeah?"
     amb1 ugh "OH........ I see......"
     nar2 "gradually pulling himself back up, Ambrosia continued his wet, pitiable streak with a slouch."
     amb1 "Just wanted to make a GOOD impression! That's all..."
-    TM "Oh what? You don't need to worry about all that, yeah? I let'cha in didn't I?"
-    TM "My words 'r as trustworthy as a hot slab of superglue! Just ask any of the others!"
+    TM "Oh what?"
+    TM default "You don't need to worry about all that, yeah? I let'cha in didn't I?"
+    show Tamura proud at right, squash
+    TM proud "My words 'r as trustworthy as a hot slab of superglue! Just ask any of the others!"
     with hpunch
     nar2 "With that, the great Tamura gave thunderous pats on the back to the wet noodle before him."
     return
 
 label .practice_haha:
     $ tam_cook == True
-    show Tamura proud at right, squish
-    TM proud "YEAHHH! Practice makes PERFECT!!"
+    show Tamura scream scream hype hype_summer at right, squash
+    with vpunch
+    TM scream "YEAHHH! Practice makes PERFECT!!"
+    
     nar2 "Chest high in the air, Tamura's roar bellowed through the walls."
     $ Total_affec["Tamura"] += 5
-    TM default "Hows about where your skill levels at? Maybe I could whip up a thing or two with ya for good measure!"
+    show Tamura proud at truecenter, squash
+    with easeinright
+    TM proud "Hows about where your skill levels at? Maybe I could whip up a thing or two with ya for good measure!"
     nar2 "From what Ambrosia's read, in this town, standards are lower than the 7th circle of hell itself. In fact, the bottom half of his passionate little resume showed with a bit of loreum ipsum."
     nar2 "Perhaps he got points for making it entirely handwritten."
     amb1 happy  "Absolutely zero, Mr. Tamura!"
     nar2 "Such proud claims were only highlighted further by another grin stretched across him."
     show Tamura proud at squash
     TM proud "WELL! In that case, Y'caught me at a good time, see? I was just about to set up the recipes up here. We're all fresh, y'know?"
-    amb1 default "I mean...What else is there?"
-    TM proud "Ex-act-ly! Frozen food never has the hard labour of love poured into it!"
+    amb1 default "I mean..."
+    amb1 "What else is there?"
+    show Tamura default at squash
+    TM default "Ex-act-ly! Frozen food never has the hard labour of love poured into it!!"
     hide Tamura with dissolve
     
 
 label .practive_haha_cont:
-    camera:
-        xalign 0.6 yalign 0.4
-        xzoom 1.2 yzoom 1.2
-        
-    with dissolve 
+
     nar2 "Soon enough, large bags of flour, buttermilk and yeast gets lifted in."
     
+    scene comic_thing
     show image Solid("#fff")
     with Dissolve(0.2)
     show Tamura proud at center, squash
@@ -1921,16 +1948,37 @@ label .practive_haha_cont:
     
     show Tamura proud at center
     TM proud "Alright, this should be pretty simple! it's honey glazed donuts! it's pretty much just bread with a couple or so extra steps, yeah?"
-    amb1 "...Right!"
+    amb1 happy "...Right!"
     nar2 "True to his words, Ambrosia hasn't had a lick of knowledge for human cuisine."
     nar2 "Not apart from it's status as one of the many gateways to the heart, that is."
-    scene cute stuffs
-    with dissolve
-    TM "I'll start up the fryer, 'n everything's written on that board over there! easy peasy!"
-    nar2 "The angel watched the other reach to set the strange bowl, filling the cauldron with a greasy elixr."
+    hide Tamura with Dissolve(0.2)
+    camera:
+        xzoom 1 yzoom 1
+    show dot_bg with dissolve
+    
+    TM proud "I'll start up the fryer, 'n everything's written on that board over there! easy peasy!"
+    show deep_fry at zoomie, truecenter
+    with easeinright
+    nar2 "The angel watched the other reach to set the strange bowl,"
+    hide deep_fry 
+    with easeoutleft
+    show cauldron:
+        xalign 0.5
+        yalign 0.45
+    with easeinright
+    nar2 "filling the cauldron with a greasy elixr."
+    hide cauldron with easeoutleft
+    nar2 "Ambrosia draws to the lettering."
     nar2 "eggs, yeast, nutmeg... sugar, vanilla... milk.... and just a pinch of salt."
-    TM "I-- Forgot to get us an electric mixer... Think you have enough elbow grease to pull it together?"
-    amb1 happy "Oh..? Oh! Yes, I think so!"
+    show Tamura hes:
+        xzoom 0.7 yzoom 0.7
+        yalign 1.1 xalign 0.2
+    with easeinbottom
+    TM hes "I-- Forgot to get us an electric mixer... Think you have enough elbow grease to pull it together?"
+    hide Tamura with easeoutbottom
+    amb1 happy "Oh..?"
+    amb1 "Oh!"
+    amb1 "Yes, I think so!"
     nar2 "Determined, Ambrosia made a show of himself, stringing together all his might."
     nar2 "bits of batter fly across the countertops, hands unwielding for even a moment."
     TM blush "WOAH?! woah! Okay, okay, I think you're overmixing a little bit--!"
@@ -1939,17 +1987,25 @@ label .practive_haha_cont:
     TM proud "Hey, hey! Don't sweat it, I remembered the towels!"
     nar2 "On top of the raw dough, Ambrosia was quickly caked by a towel- well meaning rough-housing keeping him in place."
     TM proud "There! I think I got all of it!"
-    play music "audio/houkagonoyuzora.mp3" fadein 1.0 fadeout 1.0
+    stop music
     TM default "Don't worry, the process usually isn't this... messy... I think you got a little something--uh..."
-    scene finger thing
     nar2 "Tamura's hand makes it's way towards Ambrosia's cheek."
-    nar2 "Ambrosia stills once more, avoiding the other's eyes with every inch of his being."
-    nar2 "It's a gentle graze, his thumb. Not something you'd expect for such rough hands. Somehow, Ambrosia felt his chest flutter."
-    TM hes "Er- Don't take this the the wrong way, but you should really join me at the gym..."
-    extend " I'd love to get a look at your routine! hahah!"
+    play music "audio/houkagonoyuzora.mp3" fadein 1.0 fadeout 1.0
+    nar2 "Ambrosia froze in place."
+    nar2 "Tamura's thumb grazes gently against the fuzz of his cheeks."
+    nar2 "Not something you'd expect for such rough hands."
+    nar2 "a swarm of adrenaline rushes through Ambrosia's chest."
+    TM proud "Er- Don't take this the the wrong way, but you should join me at the gym!"
+    extend default " I'd love to get a look at your routine! hahah!"
+    nar2 "Standing parallel to one another, the moment quiets. The air blooms with a richness that was hard to parse."
+    nar2 "That warm glint Blaze held in his eyes harboured a spark of something else, something new."
     TM hes "..."
+    nar2 "Admiration, respect..."
+    nar2 "No, in front of Ambrosia was that reached beyond his usual kindness."
     TM "UHM!"
-    extend proud " Right! right.. We have ta' cut em into little holes now! Hows about you watch n' learn, yeah?"
+    play music "audio/hajimetenookashidukuri.mp3"
+    extend proud " Right! right.."
+    TM proud "We have ta' cut em into little holes now! Hows about you watch n' learn, yeah?"
     amb1 flush "YEAH! Sounds... sounds good!"
     
     jump daily

@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 564: expected 'simple_expression' not found.
-    linear 0.2 xzoom 1 yzoom 
-                             ^
+File "game/day_display.rpy", line 34: keyword argument 'yalign' appears more than once in a hbox statement.
+    xalign 0.7 yalign 0.43
+                     ^
 
-Ren'Py Version: Ren'Py 8.2.1.24030407
-Wed Oct  2 22:56:14 2024
+Ren'Py Version: Ren'Py 8.3.2.24090902
+Fri Oct  4 16:36:28 2024
