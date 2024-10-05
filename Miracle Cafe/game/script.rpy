@@ -680,6 +680,7 @@ image tam_box2 = "images/tam_box2.png"
 image cauldron = "images/cauldron_cg.png"
 image deep_fry = "images/grab_deepfry_cg.png"
 
+image amb_list = "images/amb_list.png"
 image char_meet_1 = "images/char_meet_1.png"
 image char_meet_2 = "images/char_meet_2.png"
 
@@ -1968,17 +1969,31 @@ label .practive_haha_cont:
     with easeinright
     nar2 "filling the cauldron with a greasy elixr."
     hide cauldron with easeoutleft
+    show amb_list:
+        xalign 0.5
+        yalign 0.4
+    with easeinright
     nar2 "Ambrosia draws to the lettering."
+   
     nar2 "eggs, yeast, nutmeg... sugar, vanilla... milk.... and just a pinch of salt."
+    show amb_list:
+        matrixcolor TintMatrix("#A7BE4F")*BrightnessMatrix(0.05)*ContrastMatrix(1.05)
+    with Dissolve(0.2)
     show Tamura hes:
         xzoom 0.7 yzoom 0.7
         yalign 1.1 xalign 0.2
     with easeinbottom
     TM hes "I-- Forgot to get us an electric mixer... Think you have enough elbow grease to pull it together?"
     hide Tamura with easeoutbottom
+    hide amb_list
+    show amb_list:
+        xalign 0.5
+        yalign 0.4
     amb1 happy "Oh..?"
     amb1 "Oh!"
     amb1 "Yes, I think so!"
+    hide amb_list 
+    with easeoutleft
     nar2 "Determined, Ambrosia made a show of himself, stringing together all his might."
     nar2 "bits of batter fly across the countertops, hands unwielding for even a moment."
     TM blush "WOAH?! woah! Okay, okay, I think you're overmixing a little bit--!"

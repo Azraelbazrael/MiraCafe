@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/day_display.rpy", line 34: keyword argument 'yalign' appears more than once in a hbox statement.
-    xalign 0.7 yalign 0.43
-                     ^
+File "game/script.rpy", line 1973: end of line expected.
+    show amb_list with easeinright, truecenter
+                                  ^
 
 Ren'Py Version: Ren'Py 8.3.2.24090902
-Fri Oct  4 16:36:28 2024
+Fri Oct  4 20:04:45 2024
