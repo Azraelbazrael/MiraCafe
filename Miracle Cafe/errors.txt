@@ -2,9 +2,179 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 1973: end of line expected.
-    show amb_list with easeinright, truecenter
-                                  ^
+File "game/script.rpy", line 1837: expected statement.
+(Perhaps you left out a " at the end of the first line.)
+    "
+        call stats_action
+        $ Pray.holy_switcher() 
+        
+        return
+    
+    
+    # -- Stat events
+    
+    label stat_events:
+        $ Cheat_code.hide_stats_screen()
+        hide screen action_screen
+    
+        if (Work_stats["Reputatn."] >=68) and (total_days <= 30) and (met_harvey == False):
+                                             ^
+            
+            $ met_harvey = True
+            call harvey_meet
+        
+        elif (Work_stats["Clean"] <= 20) and (total_days >= 8) and (char_chasted == False):
+            $ char_chasted = True
+    
+            call charon_chast
+    
+        elif (Work_stats["Cuisine"]<= 50) and (total_days >= 16) and (cant_cook == False):
+            $ cant_cook = True
+            call tam_chast
+        
+        elif (Work_stats["Clean"] >= 80) and (char_amazed == False):
+            $ char_amazed = True
+            call char_amaze
+    
+        elif (cook_event == True) and (tam_helped == False):
+            $ tam_helped = True
+            call tam_help
+            
+        elif (clean_event == True) and (ch_helped == False):
+            $ ch_helped = True
+            call ch_help
+    
+        elif (serve_event == True) and (mad_helped == False):
+            $ mad_helped = True
+            call mad_help
+    
+        elif (cook_event == True) and (can_cook == False) and (Work_stats["Cuisine"] >= 80):
+            $ can_cook = True
+            hide screen action_screen
+            call tam_rival
+        
+        elif (Work_stats["Charm"] <=30) and (serve_event == True) and (mad_sad == False) and (total_days >= 16):
+            $ mad_sad = True
+            call mad_concern
+    
+        elif (Work_stats["Charm"] >=90) and (serve_event == True) and (mad_pep == False):
+            $ mad_pep = True
+            call mad_stand
+        
+        elif (Self_stats["Stylish"] >= 70) and (mad_makeover == False):
+            $ mad_makeover = True
+            call rand_events.makeover_makeover
+    
+        elif (mad_pep == True) and (mad_helped == True) and (mad_poet == False):
+            $ mad_poet = True
+            call rand_events.mad_poetry
+    
+        elif (Secret_stats["Sabatoge"] == 20) and (lyra_taunted == False):
+            $ lyra_taunted = True
+            call lyra_taunt
+        
+        elif (lyra_taunted == True) and (day_of_week_number == 7) and (lyra_visited == False):
+            $ lyra_visited = True
+            call lyra_visited
+    
+        return
+    
+    label harvey_meet:
+        play music "audio/houkagonoyuzora.mp3" fadein 1.0 fadeout 1.0
+        nar2 "Rush hour broke between the cafe,"
+        nar2 "Souls dance in and out, grateful or at the very least- begrudging smiles across their faces as they grab their orders."
+        nar2 "Within the sea of faces, a tall figure parted from the rest."
+        nar2 "With every step, murmurs blanket the crowd, all eyes just barely grazing past his cold stare."
+        nar2 "A permanent disdain marked the stranger's expression, carrying his head high while long locks grace his shoulders."
+        nar2 "He scans Ambrosia, a brow furrowed with a lingering sense of curiosity."
+        huh "Just a black coffee for me, please and thank you."
+        amb1 "Can I get a name for that?"
+        HV "...Harvey."
+        HV "Harvey Arison."
+        $ Topics.update({"Mystery Customer?": "Mystery_Customer"})
+        $ Total_affec.update ({"Harvey": 0})
+        return
+    
+    label tam_help:
+        camera:
+            xzoom 1.1 yzoom 1.1
+            xalign 0.56
+        scene kitchen 
+        with bites
+        $ energy -= 1
+        play music "audio/hajimetenookashidukuri.mp3" fadeout 0.5
+        
+        show Tamura scream hype hype_summer:
+            xalign 1.0 yalign 1.0 
+            linear 0.1 xalign 1.09
+            linear 0.1 xalign 1.0
+            linear 0.1 xalign 1.09
+            ease 0.3 xalign 1.0
+        with vpunch
+        TM scream "AH!!"
+    
+        show Tamura at right, squash
+        TM hes "You-- scared me, Ambrosia... You should really be knockin' first, y'know?"
+    
+        menu:
+            "Just wanting to practice, haha!":
+                call .practice_haha
+            "*Get on your knees and apologize*":
+                call .apologize
+            
+    
+        return
+    
+    label .apologize:
+        $ Secret_stats["Sabatoge"] += 5
+        show Tamura at right, squash
+        TM "WOAH! Okay, there's... uh... No need for all that."
+        show Tamura proud at right, squash
+        TM proud "C'mon, now! We're all boys here!"
+        
+        TM " 's a safe space 'n all that. No need for sorries, yeah?"
+        amb1 ugh "OH........ I see......"
+        nar2 "gradually pulling himself back up, Ambrosia continued his wet, pitiable streak with a slouch."
+        amb1 "Just wanted to make a GOOD impression! That's all..."
+        TM "Oh what?"
+        TM default "You don't need to worry about all that, yeah? I let'cha in didn't I?"
+        show Tamura proud at right, squash
+        TM proud "My words 'r as trustworthy as a hot slab of superglue! Just ask any of the others!"
+        with hpunch
+        nar2 "With that, the great Tamura gave thunderous pats on the back to the wet noodle before him."
+        return
+    
+    label .practice_haha:
+        #play music "audio/Weekend_Strategy.mp3" fadein 0.5
+        $ tam_cook == True
+        show Tamura scream scream hype hype_summer at right, squash
+        with vpunch
+        TM scream "YEAHHH! Practice makes PERFECT!!"
+        
+        nar2 "Chest high in the air, Tamura's roar bellowed through the walls."
+        $ Total_affec["Tamura"] += 5
+        show Tamura proud at truecenter, squash
+        with easeinright
+        TM proud "Hows about where your skill levels at? Maybe I could whip up a thing or two with ya for good measure!"
+        nar2 "From what Ambrosia's read, in this town, standards are lower than the 7th circle of hell itself. In fact, the bottom half of his passionate little resume showed with a bit of loreum ipsum."
+        nar2 "Perhaps he got points for making it entirely handwritten."
+        amb1 happy  "Absolutely zero, Mr. Tamura!"
+        nar2 "Such proud claims were only highlighted further by another grin stretched across him."
+        show Tamura proud at squash
+        TM proud "WELL! In that case, Y'caught me at a good time, see? I was just about to set up the recipes up here. We're all fresh, y'know?"
+        amb1 default "I mean..."
+        amb1 "What else is there?"
+        show Tamura default at squash
+        TM default "Ex-act-ly! Frozen food never has the hard labour of love poured into it!!"
+        hide Tamura with dissolve
+        
+    
+    label .practive_haha_cont:
+        
+        nar2 "Soon enough, large bags of flour, buttermilk and yeast gets lifted in."
+        
+        scene comic_thing
+        show image Solid("
 
 Ren'Py Version: Ren'Py 8.3.2.24090902
-Fri Oct  4 20:04:45 2024
+Sun Oct 13 17:54:43 2024

@@ -2,23 +2,62 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
+init python:
+    def tam_voice(event, interact=True, **kwargs,):
+        if not interact:
+            return
+
+        if event == "show_done":
+            renpy.sound.play("audio/dmochas-dialogue_bleeps_pack/dmochas-dialogue_bleeps_pack/ogg/bleep014.ogg", loop=True)
+        elif event == "slow_done":
+            renpy.sound.stop()
+        
+    def angel_voice(event, interact=True, **kwargs,):
+        if not interact:
+            return
+
+        if event == "show_done":
+            renpy.sound.play("audio/dmochas-dialogue_bleeps_pack/dmochas-dialogue_bleeps_pack/ogg/bleep011.ogg", loop=True)
+        elif event == "slow_done":
+            renpy.sound.stop()
+
+    def ch_voice(event, interact=True, **kwargs,):
+        if not interact:
+            return
+
+        if event == "show_done":
+            renpy.sound.play("audio/dmochas-dialogue_bleeps_pack/dmochas-dialogue_bleeps_pack/ogg/bleep001.ogg", loop=True)
+        elif event == "slow_done":
+            renpy.sound.stop()
+    
+    def md_voice(event, interact=True, **kwargs,):
+        if not interact:
+            return
+
+        if event == "show_done":
+            renpy.sound.play("audio/dmochas-dialogue_bleeps_pack/dmochas-dialogue_bleeps_pack/ogg/bleep012.ogg", loop=True)
+        elif event == "slow_done":
+            renpy.sound.stop()
 
 #define nar = Character(None, kind=nvl, what_color="#FFFF")
 define nar2 = Character(None, what_ypos=65 , ctc="ctc_heart", ctc_position="nestled")
-define amb1 = Character("Ambrosia", image="Ambrosia", ctc="ctc_heart", ctc_position="nestled")
-define TM = Character("Tamura", image="Tamura", ctc="ctc_heart", ctc_position="nestled")
-define CH = Character ("Charon", image="Charon", ctc="ctc_heart", ctc_position="nestled")
-define MD = Character("Madoc", image="Madoc", ctc="ctc_heart", ctc_position="nestled")
+define amb1 = Character("Ambrosia", image="Ambrosia", ctc="ctc_heart", ctc_position="nestled",callback=angel_voice)
+define TM = Character("Tamura", image="Tamura", ctc="ctc_heart", ctc_position="nestled", callback=tam_voice)
+define CH = Character ("Charon", image="Charon", ctc="ctc_heart", ctc_position="nestled", callback=ch_voice)
+define MD = Character("Madoc", image="Madoc", ctc="ctc_heart", ctc_position="nestled",callback=md_voice)
 define LY = Character("Lyra", ctc="ctc_heart", ctc_position="nestled")
 define HV = Character("Harvey", ctc="ctc_heart", ctc_position="nestled")
-define huh = Character("???", ctc="ctc_heart", ctc_position="nestled")
-define huhbegin = Character("???", image="Ambrosia", ctc="ctc_heart", ctc_position="nestled")
+define huh = Character("???", ctc="ctc_heart", ctc_position="nestled", callback=ch_voice)
+define huhbegin = Character("???", image="Ambrosia", ctc="ctc_heart", ctc_position="nestled", callback=angel_voice)
 define Mo = Character("Moira", ctc="ctc_heart", ctc_position="nestled")
-define GY = Character("Gal Pals", image="Gyaru", ctc="ctc_heart", ctc_position="nestled")
+define GY = Character("Gal Pals", image="Gyaru", ctc="ctc_heart", ctc_position="nestled",callback=ch_voice)
 
 #default holiness = 100
 default Work_stats = { "Reputatn.": 30, "Clean":30, "Cuisine": 30, "Charm": 50 }
 default Self_stats = { "Holiness": 100, "Social" : 50, "Fitness": 40, "Smarts": 50, "Stylish" : 50 }
+
+## For lyra's's's appearances!
+default Secret_stats = {"Sabatoge": 0}
 
 
 define day_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -549,6 +588,9 @@ init:
     transform flip:
         xzoom -1.0
 
+transform overlap_panel:
+    xalign 0.2
+    yalign 0.4
 transform squash:
     #xanchor 0.99
     #
@@ -567,9 +609,9 @@ transform zoomie:
 
 image ctc_heart:
     "gui/feather_ctc.png"
-    yalign 0.5
-    ease 0.2 yalign 1
-    linear 0.2 yalign 0.5
+    yalign 0.3
+    ease 0.2 yalign 0.6
+    linear 0.2 yalign 0.3
     repeat
 
 
@@ -622,7 +664,7 @@ layeredimage Tamura scream:
     
     group hair:
         ypos 360
-        attribute hype:
+        attribute hype default:
             "images/stand_sprites/tam_hair_scream_hype.png"
 
     always:
@@ -633,16 +675,16 @@ layeredimage Tamura scream:
     
     group arms:
         ypos 820
-        attribute hype:
+        attribute hype default:
             "images/stand_sprites/tam_arms_scream_hype.png"
     group clothes:
         ypos 720
-        attribute hype_summer:
+        attribute hype_summer default:
             "images/stand_sprites/tam_summer_scream_hype.png"
     group head:
         ypos 550
         xpos 370
-        attribute hype:
+        attribute hype default:
             "images/stand_sprites/tam_head_scream_hype.png"
             
     
@@ -674,13 +716,19 @@ image upstairs = "images/Upstairs_hallway.png"
 image kitchen = "images/Kitchen_background.png"
 image dot_bg = "images/dot_background.png"
 image cafe_lobby_close = "images/Cafe_interior_2.png"
+
 ## -- char CGs
 image tam_box1 = "images/tam_box1.png"
 image tam_box2 = "images/tam_box2.png"
 image cauldron = "images/cauldron_cg.png"
 image deep_fry = "images/grab_deepfry_cg.png"
+image tam_enough = "images/tam_thats_enough.png"
 
+image tam_swipe = "images/tam_swiped.png"
+image tam_hand = "images/tam_hand.png"
 image amb_list = "images/amb_list.png"
+image amb_determined = "images/amb_determined.png"
+
 image char_meet_1 = "images/char_meet_1.png"
 image char_meet_2 = "images/char_meet_2.png"
 
@@ -692,6 +740,8 @@ image Tam_r_u_fuckin_srs_rn = "images/Tam_srs.png"
 
 
 default lyra_warned = False
+default lyra_taunted = False
+default lyra_visited = False
 
 default tam_helped = False 
 default early_bird = False 
@@ -728,7 +778,7 @@ default is_demo = False
 
 
 default Total_affec = {"Madoc": 0, "Charon": 0,"Tamura": 0}
-#default highest_affec = max(Total_affec, key = lambda x: Total_affec[x])
+
 
 ## Topic dicts/list
 default Topics = {"sweet or sour foods?" : "Sweet_or_sour_foods", "favorite artist?" : "Favorite_artist", "favorite meal???": "Favorite_meal", "Inspiration?" : "Inspiration", "weather????" : "Weather"}
@@ -751,7 +801,7 @@ label start:
 label begin:
     scene image Solid("#fff")
     #show screen item_list_test
-    play music "audio/asayakenomachi.mp3"
+    play music "audio/オーベルジュへようこそ.mp3"
     nar2 "One sunday morning, the wonderfully earthy scent of gasoline and smog greets a new bubbling visitor."
     huhbegin default "this is it..."
     nar2 "He laments, soft as a mouse."
@@ -840,7 +890,7 @@ label begin:
     nar2 "The whisper of a cute smile fades as soon as it peaked out, the door hushing him back into the distance."
     hide mad_door_1
     hide mad_door_2
-    with bites
+    with dissolve
     CH reg "Oh! God,"
     extend sass " right!"
     nar2 "Charon spoke, slapping his own forehead with the tough part of his palm."
@@ -857,11 +907,17 @@ label begin:
     nar2 "Charon soon doddles off into his space, darting looks between the door and the new roomie."
     nar2 "The door creaked a loud farewell, the sneakers of the enthusiastic Charon vanishing behind."
     play sound "audio/710064__johnytud__door01_open.mp3"
-    show amb_bed 
-    with bites
     nar2 "Slowly, Ambrosia paced to his own door, unveiling it as carefully as the enterance."
+
+    scene amb_bed:
+        xzoom 1.3
+        yzoom 1.3
+        xpos 0 ypos -1
+        ease 5.0 xpos -250
+    with dissolve
     nar2 "Just beyond his nose, the angel was presented with a small room, a single bed tucked into the corner."
-    nar2 "the room's other corners made home for small arachnids, intricate webs lacing the two surfaces, dust caking the floors."
+    nar2 "the room's other corners made home for small arachnids, intricate webs lacing the two surfaces,"
+    nar2 "dust caking the floors."
     nar2 "Ambrosia scanned ceilings and walls, each plane dressed snug with grease and cracks."
     nar2 "His hand gently grazes the surface, a curiosity embued in his very finger tips."
     nar2 "For 6 months and 7 and a half days, this quaint and delightfully human area was his home."
@@ -921,8 +977,11 @@ label daily:
     return
 ## endings
 label game_over1:
-    play music "audio/houkagonoyuzora.mp3"
-    scene L + ratio
+    scene cafe_lobby_close
+    show cafe_lobby_close:
+        matrixcolor TintMatrix("#FFC7ED")* SaturationMatrix(0.0)
+    with dissolve
+    play music "audio/白き翼にのせて.mp3" fadein 1.0 fadeout 1.0
     LY "Oh, a pity that is..."
     LY "OH-HOH-HOH-HO!!! Can't say I didn't warn you, did I?"
     menu:
@@ -935,37 +994,20 @@ label .no:
     LY "There is no resistence when it comes to the ALMIGHTY HEAVENS!"
     LY "Let's hope you said your farewells, Amb-rooo-sia!"
     call screen game_over
-     
-label .wait:
-    LY "There is no resistence when it comes to the ALMIGHTY HEAVENS!"
-    LY "Let's hope you said your farewells, Amb-rooo-sia!"
-    nar2 "A faint instinct wells up inside of the small angel, just for a glimmering moment."
-    nar2 "But, he couldn't could he...?"
-    amb1 "Lyra... {i}You're{/i} my favorite."
-    nar2 "Adopting a sultry voice, he closes into Lyra's breastplate."
-    amb1 "What if this was my plan all along, hm...?"
-    nar2 "His fingers lace the edge of the holy armor, savoring the way it burned against his tips."
-    LY "I-- you-- YOU- wh-?!"
-    LY "YOUR TEMPTATIONS DO NOT REACH MY EARS! LA-LA-LA-LA!!"
-    LY "NOT LISTENING!"
-    amb1 "What? Am I... Making you nervous?"
-    LY "FOOLISH CHERUB! At this rate, you'll get your wings clipped!! Cease this behaviour at once!!"
-    nar2 "Ambrosia locks in place, his eyes knowing nothing but a sweet desperation."
-    LY "Wh- why did you stop..?"
-    amb1 "I'm listening to you, aren't I?"
-    amb1 "Use your woooordsss, hehehehe!"
-    with hpunch
-    Mo "ALRIGHT. THAT'S ENOUGH. GAME OVER, GOOD BYE."
-    call screen game_over
 
 label game_over2:
     play music "audio/houkagonoyuzora.mp3"
     TM "We lost the shop."
     CH "What?!"
-    TM "Yeah, all these scathing reviews are KILLING out business... And we uh..."
+    TM "Yeah, all these scathing reviews are KILLING our business... And we uh..."
     MD "How did that..."
     amb1 "(oh... oh goodness...)"
     amb1 "(that wasn't my fault, was it?)"
+    TM "'Never told you guys... I really didn't want a freakout."
+    TM "The uh... Bank. They told me something about a {b} reputation stat{/b} to balance..."
+    amb1 "I-I can fix this! We can bring back the shop!"
+    MD "I'm not sure that's possible, Ambrosia."
+    amb1 "Just- just close your eyes... and believe and---!"
     call screen game_over
 
 label common_end:
@@ -976,9 +1018,10 @@ label common_end:
 label lyra_warn:
     
     scene cafe_lobby_close
+    show cafe_lobby_close:
+        matrixcolor TintMatrix("#FFC7ED")* SaturationMatrix(0.0)
     with dissolve
     play music "audio/yuugurepierrot.mp3" fadein 1.0 fadeout 1.0
-    hide screen day_display
     $ lyra_warned = True
     $ Total_affec.update({"Lyra" : 0})
     LY "Oh-hoh-ho! Look at what we have here, are you lost????"
@@ -1137,7 +1180,7 @@ label demo_end:
     scene void
     with bites
     $ highest_affec = max(Total_affec, key = lambda x: Total_affec[x])
-    play music "audio/konekonoosanpo.mp3" fadein 1.0 
+    play music "audio/seiya.mp3" fadein 1.0 
     if highest_affec == "Madoc":
         show Madoc at right
         MD default "Hello."
@@ -1190,7 +1233,7 @@ label demo_end:
         LY "BEGONE!"
         LY "...Wait."
         LY "It isn't polite to leave without a proper goodbye... Looks like your foolish ways rubbed off on me."
-        LY "Goodbye, Ambrosia! We hope to see you VERY soon!"
+        LY "Goodbye, Ambrosia! I suppose... To hope to see you VERY soon!"
 
     elif highest_affec == "Harvey":
         HV "..."
@@ -1231,7 +1274,7 @@ label mad_door:
    
     play sound "audio/710064__johnytud__door01_open.mp3"
     scene upstairs
-    play music "audio/hajimetenookashidukuri.mp3" fadein 0.5 fadeout 1.0
+    play music "audio/Cry_in_my_heart.mp3" fadein 0.5 fadeout 1.0
     if Total_affec["Madoc"] >= 80:
         MD smile "Ambrosia-- it's-- Nice seeing you around. Come in."
         call mad_room
@@ -1426,6 +1469,8 @@ label .Makeup_Tips:
     MD happy "No. Ambrosia, you did great..."
     MD "Looks like you'll have to teach me a thing or two next time.."
     play music "audio/konekonoosanpo.mp3"
+
+    $ Topics.pop()
     return
 
 
@@ -1433,7 +1478,7 @@ label char_door:
     play sound "audio/710064__johnytud__door01_open.mp3"
     scene upstairs
     $ current_topic = ""
-    play music "audio/hajimetenookashidukuri.mp3" fadein 0.5 fadeout 1.0
+    play music "audio/地下街.mp3" fadein 0.5 fadeout 1.0
     if Total_affec["Charon"] >= 80:
         CH sass "You again??? woooowww... "
         CH "No, no, I'm joking! See?"
@@ -1449,14 +1494,12 @@ label char_door:
                 
     else:
         CH aww "Heeeell-ooo! What's up! What's up?"
-        menu:
-            "Hihi!! Charon can we chat??":
-                call char_room
+        
+        call char_room
                 
-            "...":
-                CH sass "Cat got your tongue? It's okay though, I LOVE shy guys! ...I'm still totally busy, though, sorry Ambrosia..."
     
     return
+    
 label char_room:
     scene char_room
     with dissolve
@@ -1595,6 +1638,7 @@ label .Mystery_Customer:
 
 label tam_door:
     play sound "audio/710064__johnytud__door01_open.mp3"
+    play music "audio/Weekend_Strategy.mp3"
     scene upstairs
     $ current_topic = ""
     
@@ -1625,13 +1669,11 @@ label tam_door:
                 
     else:
         TM "Huh, 'sup little buddy? You need anything?"
-        menu:
-            "Just wanted to say hi!":
+        
                 
-                call tam_room
+        call tam_room
                 
-            "...":
-                TM "Oh! Uhm... Don't just sit there and look at me... It freaks me out..."
+
     return
     
 label tam_room:
@@ -1757,7 +1799,7 @@ label rest_action:
     return
 
 label cook_action:
-    play sound "audio/MenuSFX/MP3/Abstract/abs-confirm-1.mp3"
+    
     if tam_helped == True:
         $ Total_affec["Tamura"] +=1
     call stats_action
@@ -1769,7 +1811,7 @@ label cook_action:
     return
 
 label clean_action:
-    play sound "audio/MenuSFX/MP3/Abstract/abs-confirm-1.mp3"
+    
     call stats_action
     if ch_helped == True:
         $ Total_affec["Charon"] +=1
@@ -1780,7 +1822,7 @@ label clean_action:
 
 label serve_action:
 
-    play sound "audio/MenuSFX/MP3/Abstract/abs-confirm-1.mp3"
+    
     call stats_action
     $ Serve.holy_switcher()
     if met_harvey == True:
@@ -1792,7 +1834,7 @@ label serve_action:
 
 label pray_action:
     
-    play sound "audio/MenuSFX/MP3/Abstract/abs-confirm-1.mp3"
+    
     call stats_action
     $ Pray.holy_switcher() 
     
@@ -1804,6 +1846,7 @@ label pray_action:
 label stat_events:
     $ Cheat_code.hide_stats_screen()
     hide screen action_screen
+
     if (Work_stats["Reputatn."] >=68) and (total_days <= 30) and (met_harvey == False):
         
         $ met_harvey = True
@@ -1846,6 +1889,23 @@ label stat_events:
     elif (Work_stats["Charm"] >=90) and (serve_event == True) and (mad_pep == False):
         $ mad_pep = True
         call mad_stand
+    
+    elif (Self_stats["Stylish"] >= 70) and (mad_makeover == False):
+        $ mad_makeover = True
+        call rand_events.makeover_makeover
+
+    elif (mad_pep == True) and (mad_helped == True) and (mad_poet == False):
+        $ mad_poet = True
+        call rand_events.mad_poetry
+
+    elif (Secret_stats["Sabatoge"] == 20) and (lyra_taunted == False):
+        $ lyra_taunted = True
+        call lyra_taunt
+    
+    elif (lyra_taunted == True) and (day_of_week_number == 7) and (lyra_visited == False):
+        $ lyra_visited = True
+        call lyra_visited
+
     return
 
 label harvey_meet:
@@ -1871,7 +1931,7 @@ label tam_help:
     scene kitchen 
     with bites
     $ energy -= 1
-    play music "audio/hajimetenookashidukuri.mp3" fadeout 1.0
+    play music "audio/hajimetenookashidukuri.mp3" fadeout 0.5
     
     show Tamura scream hype hype_summer:
         xalign 1.0 yalign 1.0 
@@ -1895,6 +1955,7 @@ label tam_help:
     return
 
 label .apologize:
+    $ Secret_stats["Sabatoge"] += 5
     show Tamura at right, squash
     TM "WOAH! Okay, there's... uh... No need for all that."
     show Tamura proud at right, squash
@@ -1913,6 +1974,7 @@ label .apologize:
     return
 
 label .practice_haha:
+    #play music "audio/Weekend_Strategy.mp3" fadein 0.5
     $ tam_cook == True
     show Tamura scream scream hype hype_summer at right, squash
     with vpunch
@@ -1937,7 +1999,7 @@ label .practice_haha:
     
 
 label .practive_haha_cont:
-
+    
     nar2 "Soon enough, large bags of flour, buttermilk and yeast gets lifted in."
     
     scene comic_thing
@@ -1980,8 +2042,7 @@ label .practive_haha_cont:
         matrixcolor TintMatrix("#A7BE4F")*BrightnessMatrix(0.05)*ContrastMatrix(1.05)
     with Dissolve(0.2)
     show Tamura hes:
-        xzoom 0.7 yzoom 0.7
-        yalign 1.1 xalign 0.2
+        xalign 0.3 
     with easeinbottom
     TM hes "I-- Forgot to get us an electric mixer... Think you have enough elbow grease to pull it together?"
     hide Tamura with easeoutbottom
@@ -1994,18 +2055,54 @@ label .practive_haha_cont:
     amb1 "Yes, I think so!"
     hide amb_list 
     with easeoutleft
+    show amb_determined:
+        xalign 0.5
+        yalign 0.4
+        xzoom 0.9
+        yzoom 0.9
+    with easeinright
     nar2 "Determined, Ambrosia made a show of himself, stringing together all his might."
+    with hpunch
     nar2 "bits of batter fly across the countertops, hands unwielding for even a moment."
+    with hpunch
+    show tam_enough at open_squish, overlap_panel
     TM blush "WOAH?! woah! Okay, okay, I think you're overmixing a little bit--!"
     amb1 "I-- I am?"
     TM "Just a little bit..."
+    show amb_determined:
+        matrixcolor TintMatrix("#A7BE4F")*BrightnessMatrix(0.05)*ContrastMatrix(1.05)
+    show tam_enough:
+        matrixcolor TintMatrix("#A7BE4F")*BrightnessMatrix(0.05)*ContrastMatrix(1.05)
+
+    show Tamura proud at center, squash
+    with easeinbottom
     TM proud "Hey, hey! Don't sweat it, I remembered the towels!"
+    camera:
+        xzoom 1 yzoom 1
+        ease 0.2 xzoom 1.3 yzoom 1.3
+    scene tam_clean_up
+    show image Solid("#000")
+    with Dissolve(0.3)
+    
     nar2 "On top of the raw dough, Ambrosia was quickly caked by a towel- well meaning rough-housing keeping him in place."
     TM proud "There! I think I got all of it!"
     stop music
+    
+    scene kitchen
+    show Tamura default at truecenter
+    with dissolve
+    
     TM default "Don't worry, the process usually isn't this... messy... I think you got a little something--uh..."
     nar2 "Tamura's hand makes it's way towards Ambrosia's cheek."
     play music "audio/houkagonoyuzora.mp3" fadein 1.0 fadeout 1.0
+    camera:
+        xalign 0.3 
+        ease 8.5 xalign 0.5
+
+    show tam_hand
+       
+    with dissolve
+    hide Tamura
     nar2 "Ambrosia froze in place."
     nar2 "Tamura's thumb grazes gently against the fuzz of his cheeks."
     nar2 "Not something you'd expect for such rough hands."
@@ -2013,12 +2110,27 @@ label .practive_haha_cont:
     TM proud "Er- Don't take this the the wrong way, but you should join me at the gym!"
     extend default " I'd love to get a look at your routine! hahah!"
     nar2 "Standing parallel to one another, the moment quiets. The air blooms with a richness that was hard to parse."
+    camera:
+        xalign 0.4 
+        ease 3 xalign 0.3
+    show tam_swiped
+    with dissolve
     nar2 "That warm glint Blaze held in his eyes harboured a spark of something else, something new."
     TM hes "..."
     nar2 "Admiration, respect..."
     nar2 "No, in front of Ambrosia was that reached beyond his usual kindness."
-    TM "UHM!"
+    
+    
+    show Tamura hes at truecenter
+    with easeinbottom
+    
+    hide tam_swiped
+    hide tam_hand
+    with dissolve 
     play music "audio/hajimetenookashidukuri.mp3"
+    TM "UHM!"
+    
+    show Tamura at squash
     extend proud " Right! right.."
     TM proud "We have ta' cut em into little holes now! Hows about you watch n' learn, yeah?"
     amb1 flush "YEAH! Sounds... sounds good!"
@@ -2045,6 +2157,7 @@ label ch_help:
 
     
 label .not_sure:
+    $ Secret_stats["Sabatoge"] += 5
     CH aww "Don't sweat it! Most people aren't..."
     CH "Besides, I'm sure you'll get along just fine in the cleaning department eventually, Ambrosia!"
     CH "I mean, look at you!"
@@ -2060,8 +2173,19 @@ label .of_course:
     CH aww "Looks like you actually have some bite to you!"
     amb1 flush "(???????)"
     CH default "I got this whole system I got going on, see?"
-    CH aww "But, with a drive like that, I think you'll be able to catch up just fine!"
-    nar2 "A soft giggle leaving his lips, Charon dashes away to sweep across corners."
+    CH aww "But, with an attitude like that, I think you'll be able to catch up just fine!"
+    amb1 happy "I won't let you down, boss!"
+    CH default "Boss...?"
+    CH sass "Flattered, truly..."
+    CH aww "Just Think of me as your super wise, super cool mentor!"
+    with vpunch
+    amb1 "Right!"
+    with vpunch
+    amb1 "Onnit, boss!"
+    
+    nar2 "With a snicker, he shifts his broom apart from himself."
+    CH "I'll be watching~!"
+
 
 label .of_course_cont:
     with dissolve
@@ -2099,7 +2223,7 @@ label .of_course_cont:
 
 label mad_help:
     $ energy -= 1
-    play music "audio/dozikkomarch.mp3" fadein 0.5 fadeout 1.0
+    play music "audio/Cry_in_my_heart.mp3" fadein 0.5 fadeout 1.0
     MD default "Cute."
     amb1 flush "sorry? Did you- mean me?"
     nar2 "Quickly, a sharpness pierced the divine being, warmth flooding from ear to ear."
@@ -2119,6 +2243,7 @@ label mad_help:
 
     return
 label .no_sweat:
+    $ Secret_stats["Sabatoge"] += 5
     MD huh "Is that so?"
     nar2 "He paused, in thought."
     MD "I would've thought I would've remembered your face from somewhere, then..."
@@ -2155,11 +2280,14 @@ label .not_really:
     nar2 "Upon his welcome re-arrival, he painted his expression with the most cheesed smile any divine or man could wish for."
 
 label .not_really_cont:
-    with bites
+    
     scene cafe_angle
-    play music "audio/houkagonoyuzora.mp3" fadein 1.0 fadeout 1.0
+    with dissolve
+    stop music
+    
     nar2 "Madoc sat atop the plush seat, big arms folded across the counter. Trying hard not to return a stare, he gazed blankly at a wall." 
     amb1 default "Ah-- Hello!"
+    play music "audio/houkagonoyuzora.mp3" fadein 1.0 fadeout 1.0
     nar2 "A little notebook was prepared in Ambrosia's hand, pried to an innocuous page."
     nar2 "His mind narrowed into the pen fixed between his fingers, gently bouncing it off of the paper."
     amb1 "Good morning! Welcome to the Miracle Cafe, how may I take your order...?"
@@ -2269,15 +2397,11 @@ label rand_events:
     if (chance == 2) and (Self_stats["Social"] >= 70) and (Work_stats["Cuisine"] >= 30) and (food_war == False):
         $ food_war = True
         call .food_fight
-    elif (chance == 3) and (mad_pep == True) and (mad_poet == False):
-        $ mad_poet = True
-        call .mad_poetry
+    
     elif (chance == 4) and (gym_bros == True) and (current_month >= 1) and (early_bird == False):
         $ early_bird = True
         call .gets_worm
-    elif (chance == 2) and (Self_stats["Stylish"] >= 60) and (mad_makeover == False):
-        $ mad_makeover = True
-        call .makeover_makeover
+    
     elif (chance == 5) and (Work_stats["Charm"] >= 60) and (music_lovers == False):
         $ music_lovers = True
         call .music_loving
@@ -2492,6 +2616,7 @@ label .accept:
     jump daily 
 
 label .deny:
+    $ Secret_stats["Sabatoge"] += 5
     MD "If you say so."
     MD "If you have any further questions, my door is always open."
     jump daily 
@@ -2543,15 +2668,35 @@ label LI_sched:
     elif (gym_event == True) and (gym_bros == False) and (gym_event == True):
         $ gym_bros = True
         call tam_gym
-    elif (jogging_pals == False) and (park_event == True) and (chance == 3):
+    elif (jogging_pals == False) and (park_event == True) and (gym_bros == True):
         $ jogging_pals = True
         call tam_park
     elif (mall_event == True) and (ch_boba == False):
         $ ch_boba = True
         call ch_boba
-    elif (beach_event == True) and (chance == 2) and (ch_beach == False):
+    elif (beach_event == True) and (char_amazed == True) and (ch_beach == False):
         $ ch_beach = True
         call ch_beach
+    
+    return
+
+label lyra_taunt:
+    scene cafe_lobby_close
+    show cafe_lobby_close:
+        matrixcolor TintMatrix("#FFC7ED")* SaturationMatrix(0.0)
+    with dissolve
+    play music "audio/yuugurepierrot.mp3" fadein 1.0 fadeout 1.0
+    LY "jrhjgrhjfrh"
+    ## TODO: AZ WRITE SHIT IN HERE LATER!!
+    return
+
+label lyra_visit:
+    scene cafe_lobby_close
+    show cafe_lobby_close:
+        matrixcolor TintMatrix("#FFC7ED")* SaturationMatrix(0.0)
+    with dissolve
+    play music "audio/yuugurepierrot.mp3" fadein 1.0 fadeout 1.0
+    LY "jrhjgrhjfrh"
     return
 
 label map_actions:
@@ -2575,7 +2720,7 @@ label map_actions:
 
 label ch_boba:
     scene mall
-    play music "audio/dozikkomarch.mp3" fadein 0.5 fadeout 1.0
+    play music "audio/地下街.mp3" fadein 0.5 fadeout 1.0
     GY 2 "Wait, isn't that--?"
     GY 1 "Oh my god, shut up! He can hear us, you know! shhh-shh-shhh..."
     nar2 "Ambrosia whips around, spinning towards the distant chatter."
@@ -2645,7 +2790,7 @@ label .drinking_it:
     jump daily 
 
 label .busy:
-    $ Total_affec["Charon"] -= 2
+    $ Secret_stats["Sabatoge"] += 7
     nar2 "Charon clicks his tongue, turning to his collegues with a soft pout."
     CH "Alright! There's always next time, okay? You are like... ALWAYS welcome!"
     GY 2 "Are we still getting free drinks?"
@@ -2675,7 +2820,7 @@ label ch_beach:
             call .leave_early
     return
 label .stick_around:
-    $ Total_affec["Charon"] -= 5
+    $ Total_affec["Charon"] += 5
     play music "audio/houkagonoyuzora.mp3" fadein 0.5 fadeout 1.0
     nar2 "Side by side, the waves brushed against their feet."
     nar2 "In that moment, the texture of sand felt cushioned like plush."
@@ -2714,6 +2859,7 @@ label .stick_around:
     jump daily 
 
 label .leave_early:
+    $ Secret_stats["Sabatoge"] += 5
     CH sass "Tch.. That's a shame..."
     CH "Catch you later, Ambrosia!"
     play music "audio/konekonoosanpo.mp3" fadein 1.0 fadeout 1.0
@@ -2788,6 +2934,7 @@ label tam_gym:
             call .im_good
     return
 label .im_good:
+    $ Secret_stats["Sabatoge"] += 5
     TM proud "Alright!! No pressure!!"
     TM "doin' it in public anyhow is nerve wreckin' enough and all that I hear! Hah-hoh!"
     jump daily  
@@ -2823,14 +2970,15 @@ label .bros_cont:
 
 label tam_park:
     with bites
-    play music "audio/hajimetenookashidukuri.mp3" fadein 1.0 fadeout 1.0
+    scene park
+    play music "audio/Weekend_Strategy.mp3" fadein 1.0 fadeout 1.0
     if gym_bros == True:
         TM proud "You're telling me you do your morning jog here, too?"
         TM "No wonder you're so... Massive, bro!"
         amb1 flush "Er-- that and genetics!"
         nar2 "A chuckle breaking through the two of them, the hours melt."
         nar2 "They race across the path, neck and neck-- even as Ambrosia had to tone it down multiple times."
-        $ Total_affec["Madoc"] += 5
+        $ Total_affec["Tamura"] += 5
     
     else:
         TM "Woah, hey Ambrosia!"
@@ -2852,7 +3000,7 @@ label gym_action:
 label ice_cream_action:
     scene parlor
     with bites
-    play sound "audio/MenuSFX/MP3/Abstract/abs-confirm-1.mp3"
+    
     call stats_action
     $ Ice_cream.holy_switcher()
     return
@@ -2861,7 +3009,7 @@ label park_action:
     #social, fitness
     scene park
     with bites
-    play sound "audio/MenuSFX/MP3/Abstract/abs-confirm-1.mp3"
+   
     call stats_action
     $ Park.holy_switcher()
     return
@@ -2869,7 +3017,7 @@ label park_action:
 label beach_action:
     scene beach
     with bites
-    play sound "audio/MenuSFX/MP3/Abstract/abs-confirm-1.mp3"
+
     call stats_action
     $ Beach.holy_switcher()
 
@@ -2878,7 +3026,7 @@ label beach_action:
 label mall_action:
     scene mall
     with bites
-    play sound "audio/MenuSFX/MP3/Abstract/abs-confirm-1.mp3"
+
     call stats_action
     $ Mall.holy_switcher()
 
@@ -2887,7 +3035,7 @@ label mall_action:
 label library_action:
     scene library
     with bites
-    play sound "audio/MenuSFX/MP3/Abstract/abs-confirm-1.mp3"
+
     call stats_action
     $ Library.holy_switcher()
     
@@ -2896,17 +3044,21 @@ label library_action:
 ## -- The grind
 
 label sunday_break:
+    ## TODO: have lyra show up when certain stats are met
     $ energy -= 1
     scene cafe_morning
     show cafe_lobby_close
     with dissolve
-    $ current_profit += (49 + reputation) /2
+    $ current_profit += (49 + Work_stats["Reputatn."]) /2
     $ money = current_profit * .05 * 100
     $ rounded_money = round(money,2)
 
     amb1 happy "it's sunday!"
     if (total_days == 7) and (lyra_warned == False):
         call lyra_warn
+        hide cafe_lobby_close
+        show cafe_lobby_close
+        with dissolve
         call screen sunday_options
         
     else:    
@@ -2973,9 +3125,12 @@ label opening_hours:
     
     
 label night:
+    
     hide screen action_screen
     $ Cheat_code.hide_stats_screen()
     scene cafe night
+    camera:
+        xzoom 1 yzoom 1
     show cafe_lobby_close:
         matrixcolor TintMatrix("#d19ee8")*ContrastMatrix(1.45)*BrightnessMatrix(-0.25)
     with dissolve

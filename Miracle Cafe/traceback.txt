@@ -1,90 +1,106 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-Executing ATL code at game/script.rpy:572
-  File "game/script.rpy", line 779, in script
-    amb1 happy "Yep!! Wouldn't be anyone else if I tried!"
-Exception: ATL appears to be in an infinite loop.
+While running game code:
+  File "game/script.rpy", line 964, in script call
+    call opening_hours
+  File "game/script.rpy", line 3081, in script call
+    call week_events
+  File "game/script.rpy", line 2344, in script call
+    call stat_events
+  File "game/script.rpy", line 1868, in script call
+    call tam_help
+  File "game/script.rpy", line 1948, in script call
+    call .practice_haha
+  File "game/script.rpy", line 960, in script call
+    call day
+  File "game/script.rpy", line 3054, in script call
+    call screen opening_options
+  File "game/script.rpy", line 2669, in script call
+    call LI_sched
+  File "game/script.rpy", line 2634, in script call
+    call tam_gym
+  File "game/script.rpy", line 2896, in script call
+    call .bros
+  File "game/script.rpy", line 964, in script call
+    call opening_hours
+  File "game/script.rpy", line 3081, in script call
+    call week_events
+  File "game/script.rpy", line 2344, in script call
+    call stat_events
+  File "game/script.rpy", line 1893, in script call
+    call rand_events.makeover_makeover
+  File "game/script.rpy", line 2545, in script call
+    call .accept
+  File "game/script.rpy", line 960, in script call
+    call day
+  File "game/script.rpy", line 3054, in script call
+    call screen opening_options
+  File "game/script.rpy", line 2669, in script call
+    call LI_sched
+  File "game/script.rpy", line 2637, in script call
+    call tam_park
+  File "game/script.rpy", line 943, in script call
+    call sunday_break
+  File "game/script.rpy", line 3016, in script
+    $ current_profit += (49 + reputation) /2
+  File "game/script.rpy", line 3016, in <module>
+    $ current_profit += (49 + reputation) /2
+NameError: name 'reputation' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 779, in script
-    amb1 happy "Yep!! Wouldn't be anyone else if I tried!"
-  File "C:\renpy-8.3.2-sdk\renpy\ast.py", line 2573, in execute
-    Say.execute(self)
-  File "C:\renpy-8.3.2-sdk\renpy\ast.py", line 615, in execute
-    renpy.exports.say(who, what, *args, **kwargs)
-  File "C:\renpy-8.3.2-sdk\renpy\exports\sayexports.py", line 132, in say
-    who(what, *args, **kwargs)
-  File "C:\renpy-8.3.2-sdk\renpy\character.py", line 1455, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
-  File "C:\renpy-8.3.2-sdk\renpy\character.py", line 1106, in do_display
-    display_say(who,
-  File "C:\renpy-8.3.2-sdk\renpy\character.py", line 803, in display_say
-    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
-  File "C:\renpy-8.3.2-sdk\renpy\ui.py", line 301, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\renpy-8.3.2-sdk\renpy\display\core.py", line 2215, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\renpy-8.3.2-sdk\renpy\display\core.py", line 2879, in interact_core
-    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
-  File "C:\renpy-8.3.2-sdk\renpy\display\core.py", line 1381, in draw_screen
-    surftree = renpy.display.render.render_screen(
-  File "render.pyx", line 486, in renpy.display.render.render_screen
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\renpy-8.3.2-sdk\renpy\display\layout.py", line 903, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\renpy-8.3.2-sdk\renpy\display\transition.py", line 549, in render
-    top = render(self.new_widget, width, height, st, at)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\renpy-8.3.2-sdk\renpy\display\layout.py", line 903, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\renpy-8.3.2-sdk\renpy\display\layout.py", line 903, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\renpy-8.3.2-sdk\renpy\display\screen.py", line 754, in render
-    child = renpy.display.render.render(self.child, w, h, st, at)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\renpy-8.3.2-sdk\renpy\display\layout.py", line 903, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\renpy-8.3.2-sdk\renpy\display\layout.py", line 1454, in render
-    surf = render(child,
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\renpy-8.3.2-sdk\renpy\display\layout.py", line 903, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\renpy-8.3.2-sdk\renpy\text\text.py", line 2533, in render
-    renders[i] = renpy.display.render.render(i, width, self.style.size, st, at)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\renpy-8.3.2-sdk\renpy\display\image.py", line 513, in render
-    return wrap_render(self.target, width, height, st, at)
-  File "C:\renpy-8.3.2-sdk\renpy\display\image.py", line 316, in wrap_render
-    rend = render(child, w, h, st, at)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\renpy-8.3.2-sdk\renpy\display\transform.py", line 1054, in render
-    self.update_state()
-  File "C:\renpy-8.3.2-sdk\renpy\display\transform.py", line 1235, in update_state
-    fr = self.execute(self, fst, fat)
-  File "C:\renpy-8.3.2-sdk\renpy\atl.py", line 798, in execute
-    action, arg, pause = block.execute(trans, timebase, self.atl_state, events)
-  File "C:\renpy-8.3.2-sdk\renpy\atl.py", line 1071, in execute
-    raise Exception("ATL appears to be in an infinite loop.")
-Exception: ATL appears to be in an infinite loop.
+  File "game/script.rpy", line 964, in script call
+    call opening_hours
+  File "game/script.rpy", line 3081, in script call
+    call week_events
+  File "game/script.rpy", line 2344, in script call
+    call stat_events
+  File "game/script.rpy", line 1868, in script call
+    call tam_help
+  File "game/script.rpy", line 1948, in script call
+    call .practice_haha
+  File "game/script.rpy", line 960, in script call
+    call day
+  File "game/script.rpy", line 3054, in script call
+    call screen opening_options
+  File "game/script.rpy", line 2669, in script call
+    call LI_sched
+  File "game/script.rpy", line 2634, in script call
+    call tam_gym
+  File "game/script.rpy", line 2896, in script call
+    call .bros
+  File "game/script.rpy", line 964, in script call
+    call opening_hours
+  File "game/script.rpy", line 3081, in script call
+    call week_events
+  File "game/script.rpy", line 2344, in script call
+    call stat_events
+  File "game/script.rpy", line 1893, in script call
+    call rand_events.makeover_makeover
+  File "game/script.rpy", line 2545, in script call
+    call .accept
+  File "game/script.rpy", line 960, in script call
+    call day
+  File "game/script.rpy", line 3054, in script call
+    call screen opening_options
+  File "game/script.rpy", line 2669, in script call
+    call LI_sched
+  File "game/script.rpy", line 2637, in script call
+    call tam_park
+  File "game/script.rpy", line 943, in script call
+    call sunday_break
+  File "game/script.rpy", line 3016, in script
+    $ current_profit += (49 + reputation) /2
+  File "C:\renpy-8.3.2-sdk\renpy\ast.py", line 821, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\renpy-8.3.2-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 3016, in <module>
+    $ current_profit += (49 + reputation) /2
+NameError: name 'reputation' is not defined
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.3.2.24090902
 Miracle Cafe 1.0
-Fri Oct  4 17:49:01 2024
+Thu Oct 10 18:06:27 2024

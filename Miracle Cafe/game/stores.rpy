@@ -23,7 +23,7 @@ screen store():
     style_prefix "map"
     frame:
         xalign 0.52 yalign 0.5
-        
+        ## TODO: action function that checks a var. The buttons change the var to the item name.
         vbox:
             box_wrap True
             xalign 0.5
