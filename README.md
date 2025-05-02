@@ -29,7 +29,7 @@ as of 2025, the project's progress has been managed and recorded through Trello.
 <p align="right">(For more information please refer to the <a href="https://github.com/Azraelbazrael/MiraCafe/blob/main/DOCUMENTATION.md">documentation</a>)</p>
 
 # Credits
-## music
+### Music
 <ul>
 <li><a href="https://soundcloud.com/user-171730910-142490571/asayakenomachi-sunrider"> Asayakenomachi - Sunrider Academy </a> </li>
 <li><a href="https://dova-s.jp/EN/bgm/play21096.html">Welcome to Auberge</a> </li>
@@ -39,4 +39,6 @@ as of 2025, the project's progress has been managed and recorded through Trello.
 <li><a href="https://dova-s.jp/EN/bgm/play1599.html"> Bound Box </li>
 <li><a href="https://amachamusic.chagasi.com/music_yukiusaginokakekko.html">Snow Rabbits Running</a></li>
 <li><a href= "https://amachamusic.chagasi.com/music_dozikkomarch.html"> Clumsy Marching</a></li>
+<li><a href="https://amachamusic.chagasi.com/music_konekonoosanpo.html"> Kitten Walking</a></li>
+    
 </ul>
