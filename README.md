@@ -30,9 +30,11 @@ as of 2025, the project's progress has been managed and recorded through Trello.
 
 # Credits
 ## music
-<a href="https://soundcloud.com/user-171730910-142490571/asayakenomachi-sunrider"> Asayakenomachi - Sunrider Academy </a>
-<a href="https://dova-s.jp/EN/bgm/play21096.html">Welcome to Auberge</a>
-<a href="https://dova-s.jp/EN/bgm/play21055.html">on White Wings</a>
-<a href="https://dova-s.jp/EN/bgm/play21008.html">Despair </a>
-<a href="https://dova-s.jp/EN/bgm/play21012.html"> Underground shopping mall </a>
-<a href="https://dova-s.jp/EN/bgm/play1599.html"> Bound Box
+<ul>
+<li><a href="https://soundcloud.com/user-171730910-142490571/asayakenomachi-sunrider"> Asayakenomachi - Sunrider Academy </a> </li>
+<li><a href="https://dova-s.jp/EN/bgm/play21096.html">Welcome to Auberge</a> </li>
+<li><a href="https://dova-s.jp/EN/bgm/play21055.html">on White Wings</a> </li>
+<li><a href="https://dova-s.jp/EN/bgm/play21008.html">Despair </a> </li>
+<li><a href="https://dova-s.jp/EN/bgm/play21012.html"> Underground shopping mall </a> </li>
+<li><a href="https://dova-s.jp/EN/bgm/play1599.html"> Bound Box </li>
+</ul>
