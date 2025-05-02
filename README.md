@@ -1,6 +1,6 @@
 <!-- READ ME --->
 # About the Project
-
+Mitacle Cafe is a queer 90s-style Dating Simulator with stat-managing elements. This is currently in development and there are no playable builds yet.
 
 
 
