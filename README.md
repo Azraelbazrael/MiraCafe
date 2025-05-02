@@ -37,5 +37,6 @@ as of 2025, the project's progress has been managed and recorded through Trello.
 <li><a href="https://dova-s.jp/EN/bgm/play21008.html">Despair </a> </li>
 <li><a href="https://dova-s.jp/EN/bgm/play21012.html"> Underground Shopping Mall </a> </li>
 <li><a href="https://dova-s.jp/EN/bgm/play1599.html"> Bound Box </li>
-<li><a href="https://amachamusic.chagasi.com/music_yukiusaginokakekko.html">Snow rabbits running</a></li>
+<li><a href="https://amachamusic.chagasi.com/music_yukiusaginokakekko.html">Snow Rabbits Running</a></li>
+<li><a href= "https://amachamusic.chagasi.com/music_dozikkomarch.html"> Clumsy Marching</a></li>
 </ul>
