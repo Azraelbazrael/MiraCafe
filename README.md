@@ -39,7 +39,7 @@ There are 5 love interests:
 ## Road Map
 as of 2025, the project's progress has been managed and recorded through Trello. 
 <a href="https://trello.com/b/3za6AD3a/miracle-cafe"> Trello Link </a>
-<p align="right">(For more information please refer to the <a href="https://github.com/Azraelbazrael/MiraCafe/blob/main/DOCUMENTATION.md">documentation</a>)</p>
+
 
 # Credits
 - **MUSIC**
@@ -57,3 +57,5 @@ as of 2025, the project's progress has been managed and recorded through Trello.
 
 - **SFX**
 
+
+<p align="right">(For more information please refer to the <a href="https://github.com/Azraelbazrael/MiraCafe/blob/main/DOCUMENTATION.md">documentation</a>)</p>
