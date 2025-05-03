@@ -157,7 +157,8 @@ label next_day:
     $ ice_cream_event = False
     nar2 "the next day"
     return
-
+```
+```sh
 
 label day_change:
 ## make it week change. week and sunday
@@ -197,7 +198,8 @@ label day_change:
     else:
         $ current_day ="NUH UH"
     return
-
+```
+```sh
 label month_change:
     $ total_days += 1
     $ month_day += 1
