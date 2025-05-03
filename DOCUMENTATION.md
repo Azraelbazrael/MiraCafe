@@ -131,7 +131,6 @@ During the different time periods, different screens are called to the front. Ea
 ```sh
 #for flag checks
 default Total_affec = {"Madoc": 0, "Charon": 0,"Tamura": 0}
-default money = 0
 ```
 
 ```sh
