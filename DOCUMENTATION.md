@@ -148,6 +148,96 @@ screen opening_options():
 During the different time periods, different screens are called to the front. Each button has a tool tip displaying the basics of what each action entails.
 
 ## Stat events
+There are multiple components to a stat event, theres a condition and a seperate flag associated with that event in order to not repeat if the threshold is met again.
+<br>
+All flags can be found in `event_flags.rpy`. Each flag is sectioned off by character or location and commented accordingly. 
+```sh
+default lyra_warned = False
+default lyra_taunted = False
+default lyra_visited = False
+
+default tam_helped = False 
+default early_bird = False 
+default tam_cook = False 
+default gym_bros = False
+default jogging_pals = False
+default cant_cook = False
+default can_cook = False
+
+default ch_helped = False
+default ch_mad = False
+default ch_mall = False
+default char_chasted = False 
+default char_amazed = False
+default ch_broom = False
+default ch_boba = False
+default ch_beach = False
+
+default mad_helped = False
+default mad_sad = False
+default mad_pep = False 
+default mad_poet = False
+default mad_makeover = False
+default food_war = False 
+default music_lovers = False
+default amb_goth = False
+
+default met_harvey = False
+default harv_homebody = False
+default harv_book = False
+
+```
+After the "early morning" phase of the in-game day, the weeks events are called. From there, another label called the `stats_events` is called.
+Each event is organized with an elif statement, due to a lack of match case in Ren'py's case. The condition is put in the expression, referencing the established dictionaries and/or flags.
+```sh
+if (Work_stats["Reputatn."] >=68) and (total_days <= 30) and (met_harvey == False):
+        
+        $ met_harvey = True
+        call harvey_meet
+```
+There's a seperate type of event that behaves pretty similarly except the chances of them showing up are random. 
+These are called *random events* or `rand_events` in the code.
+During each "afternoon" phase, the script rolls a random interger between 1 and 5 and from there, that'll determine if a player might see one of the events.
+```sh
+label day:
+    $ chance = renpy.random.randint(1,5)
+
+scene cafe_lobby_close
+    
+
+    show screen day_display
+    show screen opening_options
+    
+    with dissolve
+    if total_days == 1:
+        amb1 happy "(Okay! Step one of earning a human's love is acting like one!)"
+        extend " (Probably!) (I'm pretty sure!)"
+        amb1 default "(This should be easy!)"
+    hide screen opening_options
+    call screen opening_options
+    
+    call rand_events
+
+```
+
+One player might meet the conditions and never see that cutscene, while another might. The idea is that each playthrough feels fresh while keeping things simple.
+```sh
+    $ Cheat_code.hide_stats_screen()
+    hide screen action_screen
+    
+    if (chance == 2) and (Self_stats["Social"] >= 70) and (Work_stats["Cuisine"] >= 30) and (food_war == False):
+        $ food_war = True
+        call .food_fight
+    
+    elif (chance == 4) and (gym_bros == True) and (current_month >= 1) and (early_bird == False):
+        $ early_bird = True
+        call .gets_worm
+    
+    elif (chance == 5) and (Work_stats["Charm"] >= 60) and (music_lovers == False):
+        $ music_lovers = True
+        call .music_loving
+    return
+```
 
 
 # Calendar 
