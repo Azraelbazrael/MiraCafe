@@ -27,6 +27,8 @@ Stats, apart from Holiness is broken up into dictionaries. I found this was easi
 
 <br>
 These stats are love-interest specific. Those dictionaries hold the affection levels for the current romancable interests and talking points the player can access on sundays. 
+
+
 ```sh
 #for flag checks
 default Total_affec = {"Madoc": 0, "Charon": 0,"Tamura": 0}
