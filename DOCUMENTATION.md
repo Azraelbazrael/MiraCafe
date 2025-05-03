@@ -12,9 +12,9 @@ default Self_stats = { "Holiness": 100, "Social" : 50, "Fitness": 40, "Smarts": 
 
 ## For lyra's's's appearances!
 default Secret_stats = {"Sabatoge": 0}
+```
 
-
-
+```sh
 #for flag checks
 default Total_affec = {"Madoc": 0, "Charon": 0,"Tamura": 0}
 default money = 0
@@ -34,6 +34,11 @@ default Talking_points = [x for x in Topics]
 
 default current_host = ""
 ```
+
+## Stat Generating
+
+## Stat events
+
 
 # Calendar 
 
@@ -86,6 +91,4 @@ This section keeps track of the "holiness" stat and changes music throughout to 
 
     return
 ```
-# Stat Generating
 
-# Stat events
