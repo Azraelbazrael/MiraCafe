@@ -3,10 +3,11 @@
 Ren'py is a language used specifically for the engine of the same name, opporating similarly to and accepting support for python 3. Each new game project under that engine uses one specific script for the entire game unless programmed otherwise internally. How it opporates is that it takes each `label` as an individual function that it runs in order to how its formatted unless directed otherwise with `jumps`, starting from the `start` label. 
 <br>While there might be other scripts used to format UI or 2D assets, only one script is used to run dialogue in this project.
 
-# Gameplay loop
+# Gameplay Loop
 The play session consists of "work days" and "sundays" which can be broken up similarly. 
 <br> With each work day heres an "early morning" phase, "afternoon" phase and "night" phase.
-On an in-game "monday" you choose what action takes over that slot for the entire week, increasing and decreasing certain values. By improving or diminishing some traits, you can capture the attention of the various love interests. Sundays are "free days" where the afternoon is replaced with another morning slot, and the option to go shop for special items.
+On an in-game "monday" you choose what action takes over that slot for the entire week, increasing and decreasing certain values. By improving or diminishing some traits, you can capture the attention of the various love interests. 
+<br>Sundays are "free days" where the afternoon is replaced with another morning slot, and the option to go shop for special items.
 <br>
 Early mornings and nights serve to help balance the players stats. Mornings even opening the possibility to take "map" events which give different stat boosts and events. For example, if holiness has been exhausted to a low enough amount, you can pray during either period at the cost of your reputation. Its a game of keeping your numbers balances and also in the favor of which route you might want to take.
 
