@@ -25,6 +25,21 @@ Stats, apart from Holiness is broken up into dictionaries. I found this was easi
 <br> Holiness works a lot like a "stress meter" found in this genre of game, the player starts out with 100 holiness and this decreases with every chosen action. Like the titles that came before it, if this central stat isn't managed, the player recieves consequences that can affect your stats and your ending if things get too bad.
 <br> `Sabatoge` in this case keeps tabs on when the player intentionally chooses incorrect dialogue options and thus gives more of a likelihood for a secret romance option showing up.
 
+```sh
+#for flag checks
+default Total_affec = {"Madoc": 0, "Charon": 0,"Tamura": 0}
+```
+
+```sh
+default current_topic = ""
+
+## Topic dicts/list
+default Topics = {"sweet or sour foods?" : "Sweet_or_sour_foods", "favorite artist?" : "Favorite_artist", "favorite meal???": "Favorite_meal", "Inspiration?" : "Inspiration", "weather????" : "Weather"}
+default Talking_points = [x for x in Topics]
+
+default current_host = ""
+```
+These stats are love-interest specific. Those dictionaries hold the affection levels for the current romancable interests and talking points the player can access on sundays. 
 
 ## Stat Generating
 Stats are managed and generated with "Actions". Functions related to stat generating are located in `action_funcs.rpy`. <br> 
@@ -128,20 +143,7 @@ screen opening_options():
 During the different time periods, different screens are called to the front. Each button has a tool tip displaying the basics of what each action entails.
 
 ## Stat events
-```sh
-#for flag checks
-default Total_affec = {"Madoc": 0, "Charon": 0,"Tamura": 0}
-```
 
-```sh
-default current_topic = ""
-
-## Topic dicts/list
-default Topics = {"sweet or sour foods?" : "Sweet_or_sour_foods", "favorite artist?" : "Favorite_artist", "favorite meal???": "Favorite_meal", "Inspiration?" : "Inspiration", "weather????" : "Weather"}
-default Talking_points = [x for x in Topics]
-
-default current_host = ""
-```
 
 # Calendar 
 ```sh
