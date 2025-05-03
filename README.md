@@ -19,7 +19,7 @@ There are 5 love interests:
 ### Built with
 
 - <a href="https://www.renpy.org/">Renpy </a>
-    - wirtten in Ren'py
+    - written in Ren'py
 
 ### Installation
 1. Clone the repo
