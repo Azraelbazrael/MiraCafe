@@ -88,6 +88,8 @@ Every action found within the game has a class associated with it, it's structur
                 
                 Pray.sucks_()
 ```
+When `pray_action` is called, the label gets the function from the pray class. From here, it checks the holiness stat to "switch" between which preformance functions the results fall under. The `$` tells the engine that the rest of the line is python and that's where to pull from.
+<br>
 ```sh
 label pray_action:
 
@@ -96,8 +98,7 @@ label pray_action:
     
     return
 ```
-When `pray_action` is called, the label gets the function from the pray class. From here, it checks the holiness stat to "switch" between which preformance functions the results fall under. The `$` tells the engine that the rest of the line is python and that's where to pull from.
-<br>
+
 
 During gameplay, an action is called when the player is prompted with a screen of buttons, like so:
 ```sh
