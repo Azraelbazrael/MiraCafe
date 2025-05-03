@@ -13,6 +13,8 @@ default Self_stats = { "Holiness": 100, "Social" : 50, "Fitness": 40, "Smarts": 
 ## For lyra's's's appearances!
 default Secret_stats = {"Sabatoge": 0}
 ```
+Stats, apart from Holiness is broken up into dictionaries. I found this was easier than estabishing a lot of different variables to reference later on. Work stats are indicative of our MC's work skills and self-skills are more about his personal improvements.
+<br> `Sabatoge` in this case keeps tabs on when the player intentionally chooses incorrect dialogue options and thus gives more of a likelihood for a secret romance option showing up.
 
 ```sh
 #for flag checks
