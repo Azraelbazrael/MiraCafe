@@ -241,19 +241,20 @@ One player might meet the conditions and never see that cutscene, while another 
 
 
 # Calendar 
+
 ```sh
-label next_day:
-    $ Cheat_code.hide_stats_screen()
-    hide screen action_screen
-    $ energy = 3 
-    $ park_event = False
-    $ beach_event = False
-    $ lib_event = False
-    $ gym_event = False
-    $ ice_cream_event = False
-    nar2 "the next day"
-    return
+define day_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+default day_of_week_number = 1
+default current_day = 0
+
+default total_days = 1
+default month_day = 1
+define month = ["July", "August", "September", "October", "November", "December"]
+default current_month = 0
+default energy = 3
 ```
+
+
 ```sh
 
 label day_change:
@@ -322,7 +323,7 @@ label month_change:
 
 ```
 # Day/Night Loop
-Each ingame "day" consists of a loop broken up by elif statements. 
+Each ingame "day" consists of a while loop broken up by elif statements. Once a "day" is complete, the function returns the power to the `daily` label, thus keeping the game in a working loop.
 
 ```sh
 label daily:
@@ -331,7 +332,7 @@ label daily:
     if Self_stats["Holiness"] <= 40:
         play music "audio/houkagonoyuzora.mp3" fadein 1.0 fadeout 1.0
 ```
-This section keeps track of the "holiness" stat and changes music throughout to let the player know if that central stat is too low. 
+This section keeps track of one of the core stats, and serves as a gentle reminder if it gets too low. It also keeps the BGM from being too repetitive.  
 ```sh
     while True:
 
@@ -350,7 +351,9 @@ This section keeps track of the "holiness" stat and changes music throughout to 
             jump game_over2
         elif total_days == 182:
             jump common_end
-              
+```
+Here specifically is where the time of day changes. Each action taken removes one energy and returns back here, thus oiling the machine.
+```sh
         else:
             if energy >= 3:
                 call day
@@ -370,4 +373,17 @@ This section keeps track of the "holiness" stat and changes music throughout to 
 
     return
 ```
-
+At the end of each "day" the energy is replenished back to 3, just before a `day_change` is called.
+```sh
+label next_day:
+    $ Cheat_code.hide_stats_screen() ## Just hides all stat screens in one function
+    hide screen action_screen
+    $ energy = 3 
+    $ park_event = False
+    $ beach_event = False
+    $ lib_event = False
+    $ gym_event = False
+    $ ice_cream_event = False
+    nar2 "the next day"
+    return
+```
