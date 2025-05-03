@@ -25,6 +25,8 @@ Stats, apart from Holiness is broken up into dictionaries. I found this was easi
 <br> Holiness works a lot like a "stress meter" found in this genre of game, the player starts out with 100 holiness and this decreases with every chosen action. Like the titles that came before it, if this central stat isn't managed, the player recieves consequences that can affect your stats and your ending if things get too bad.
 <br> `Sabatoge` in this case keeps tabs on when the player intentionally chooses incorrect dialogue options and thus gives more of a likelihood for a secret romance option showing up.
 
+<br>
+
 ```sh
 #for flag checks
 default Total_affec = {"Madoc": 0, "Charon": 0,"Tamura": 0}
