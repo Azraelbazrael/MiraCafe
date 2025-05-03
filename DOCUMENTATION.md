@@ -27,22 +27,114 @@ Stats, apart from Holiness is broken up into dictionaries. I found this was easi
 
 
 ## Stat Generating
-Stats are managed and generated with "Events". Functions related to stat generating are located in `action_funcs.rpy`. 
+Stats are managed and generated with "Actions". Functions related to stat generating are located in `action_funcs.rpy`. <br> 
+Because of the `init python:` to the top of the script, each class is read at initalization time, just before the rest of the game. 
+Every action found within the game has a class associated with it, it's structure can be broken up into 4 different parts.
 
+```sh
+ class Pray():
+
+        def success():
+            global Self_stats
+            global Work_stats
+            nar2("A prayer brought serenity.") ## narration
+            Self_stats["Holiness"] += renpy.random.randint(10,15) ## pulls random intergers between two specified numbers
+            Work_stats["Reputatn."] -= renpy.random.randint(3,5)
+
+        def slightly_less():
+            global Self_stats
+            global Work_stats
+            nar2("A desprate prayer brought some peace.")
+            Self_stats["Holiness"] += renpy.random.randint(10,15)
+            Work_stats["Reputatn."] -= renpy.random.randint(3,5)    
+
+        def sucks_():
+            global Self_stats
+            global Work_stats
+            nar2("A desprate prayer brought some clarity.")
+            Self_stats["Holiness"] += renpy.random.randint(20,25)
+            Work_stats["Reputatn."] -= renpy.random.randint(3,5)
+
+        def holy_switcher():
+            global Self_stats
+            global energy 
+            energy -= 1
+            renpy.show_screen("pray_action")
+            if(Self_stats["Holiness"] >= 60):
+                
+                Pray.success()
+                renpy.pause(1.8, hard=True)
+            elif (Self_stats["Holiness"] >= 40):
+                
+                Pray.slightly_less()
+            else:
+                
+                Pray.sucks_()
+```
+```sh
+label pray_action:
+
+    call stats_action ## shows action_screen
+    $ Pray.holy_switcher() 
+    
+    return
+```
+When `pray_action` is called, the label gets the function from the pray class. From here, it checks the holiness stat to "switch" between which preformance functions the results fall under. The `$` tells the engine that the rest of the line is python and that's where to pull from.
+<br>
+
+During gameplay, an action is called when the player is prompted with a screen of buttons, like so:
+```sh
+screen opening_options():
+    style_prefix "actions"
+    frame:
+        vbox:
+            
+            textbutton "cook":
+                tooltip "( -holiness, +smarts , +cuisine, -cleanliness )"
+                action [Call("cook_action"), Return()]  
+            textbutton "clean":
+                action [Call("clean_action"), Return()]
+                tooltip "( -holiness, +cleanliness, +reputation, +style )" 
+            textbutton "pray":
+                action [Call("pray_action"), Return()]  
+                tooltip "( +holiness, -reputation )"
+            
+            if total_days != 1: 
+                textbutton "map":
+                    tooltip "travel, get stats... Run into a familiar face?" 
+                    action ToggleScreen("map_screen") activate_sound "audio/MenuSFX/SoupTonic UI1 SFX Pack 1 - mp3/SFX_UI_Shop.mp3"
+            textbutton "stats" action ToggleScreen("stats_display") activate_sound "audio/MenuSFX/SoupTonic UI1 SFX Pack 1 - mp3/SFX_UI_Shop.mp3"
+    $ tooltip = GetTooltip()
+    if tooltip:
+        nearrect:
+            focus "tooltip"
+            #prefer_top True
+
+            frame:
+                background Frame("gui/text_boxes2.png")
+                yminimum 200 ymaximum 400
+                xsize 310
+                xoffset -370
+                yoffset -50
+                hbox:
+                    #box_wrap_spacing 
+                    #xsize 195
+                    #box_wrap True
+                    xalign 0.5
+                    yalign 0.35
+                    xsize 280
+                    text "[tooltip]" color ("#FFFFD8") size 35
+```
+During the different time periods, different screens are called to the front. Each button has a tool tip displaying the basics of what each action entails.
 
 ## Stat events
 ```sh
 #for flag checks
 default Total_affec = {"Madoc": 0, "Charon": 0,"Tamura": 0}
 default money = 0
+```
 
-
-default current_profit = 0
-default current_clean = 0
-
-default sign_up = False
-
-default rounded_money = 0
+```sh
 default current_topic = ""
 
 ## Topic dicts/list
@@ -53,7 +145,84 @@ default current_host = ""
 ```
 
 # Calendar 
+```sh
+label next_day:
+    $ Cheat_code.hide_stats_screen()
+    hide screen action_screen
+    $ energy = 3 
+    $ park_event = False
+    $ beach_event = False
+    $ lib_event = False
+    $ gym_event = False
+    $ ice_cream_event = False
+    nar2 "the next day"
+    return
 
+
+label day_change:
+## make it week change. week and sunday
+
+    
+    $ day_of_week_number += 1
+
+    if day_of_week_number == 8:
+        $ day_of_week_number = 1
+        $ current_day = 0 
+        $ cook_event = False
+        $ clean_event = False
+        $ pray_event = False
+        $ serve_event = False
+    
+
+    elif day_of_week_number == 1:
+        $ current_day = 0 
+    
+    elif day_of_week_number == 2:
+        $  current_day = 1
+    
+    elif day_of_week_number == 3:
+        $  current_day = 2
+    
+    elif day_of_week_number == 4:
+        $  current_day = 3
+    
+    elif day_of_week_number == 5:
+        $  current_day = 4
+    
+    elif day_of_week_number == 6:
+        $  current_day = 5
+    
+    elif day_of_week_number == 7:
+        $  current_day = 6
+    else:
+        $ current_day ="NUH UH"
+    return
+
+label month_change:
+    $ total_days += 1
+    $ month_day += 1
+
+    if total_days == 31:
+        $ Topics.clear()
+        $ month_day = 1
+        $ current_month += 1
+    if total_days == 61:
+        $ month_day = 1
+        $ current_month += 1
+    if total_days == 92:
+        $ month_day = 1
+        $ current_month += 1
+    
+    if total_days == 122:
+        $ month_day = 1
+        $ current_month += 1
+
+    if total_days == 153:
+        $ month_day = 1
+        $ current_month += 1
+    return   
+
+```
 # Day/Night Loop
 Each ingame "day" consists of a loop broken up by elif statements. 
 
