@@ -3,15 +3,17 @@
 Mitacle Cafe is a queer, stat-managing 90s-style Dating Simulator about a cherub finding love on earth. This is currently in development and there are no playable builds yet.
 There are 5 love interests:
 
-**The three "beginning" Love interests**
+**The three "beginning" Love interests:**
 * Madoc
 * Tamura
 * Charon
 
-**Special Love interests (event specific/not started with off with)**
+
+**The Special Love interests (event specific/not started with off with):**
 * Harvey
 * Lyra
 
+<br>
 
 <!-- Project information -->
 ### Built with
