@@ -375,7 +375,7 @@ Here specifically is where the time of day changes. Each action taken removes on
 
     return
 ```
-At the end of each "day" the energy is replenished back to 3, just before a `day_change` is called. <p align="right">(Refer to <#calendar">the Calendar</a> for more information)</p>
+At the end of each "day" the energy is replenished back to 3, just before a `day_change` is called. <p align="right">(Refer to <a href ="https://github.com/Azraelbazrael/MiraCafe/blob/main/DOCUMENTATION.md#calendar">Calendar </a>for more information)</p>
 ```sh
 label next_day:
     $ Cheat_code.hide_stats_screen() ## Just hides all stat screens in one function
