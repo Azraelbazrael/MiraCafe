@@ -13,8 +13,6 @@ There are 5 love interests:
     -  Harvey
     - Lyra
 
-<br>
-
 <!-- Project information -->
 ### Built with
 
