@@ -11,6 +11,8 @@ On an in-game "monday" you choose what action takes over that slot for the entir
 <br>
 Early mornings and nights serve to help balance the players stats. Mornings even opening the possibility to take "map" events which give different stat boosts and events. For example, if holiness has been exhausted to a low enough amount, you can pray during either period at the cost of your reputation. Its a game of keeping your numbers balances and also in the favor of which route you might want to take.
 
+# Characters and Dialogue
+
 # Stats
 
 ```sh
