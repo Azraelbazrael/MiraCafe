@@ -26,7 +26,7 @@ Stats, apart from Holiness is broken up into dictionaries. I found this was easi
 <br> `Sabatoge` in this case keeps tabs on when the player intentionally chooses incorrect dialogue options and thus gives more of a likelihood for a secret romance option showing up.
 
 <br>
-
+These stats are love-interest specific. Those dictionaries hold the affection levels for the current romancable interests and talking points the player can access on sundays. 
 ```sh
 #for flag checks
 default Total_affec = {"Madoc": 0, "Charon": 0,"Tamura": 0}
@@ -41,7 +41,7 @@ default Talking_points = [x for x in Topics]
 
 default current_host = ""
 ```
-These stats are love-interest specific. Those dictionaries hold the affection levels for the current romancable interests and talking points the player can access on sundays. 
+"default" just denotes the ones the script starts out with, in the full game these topics will change with each in game month. The keys are the strings that show up in the suggested screen when topics are suggested and the value is the label name that the script jumps to when given the option.
 
 ## Stat Generating
 Stats are managed and generated with "Actions". Functions related to stat generating are located in `action_funcs.rpy`. <br> 
