@@ -12,6 +12,16 @@ On an in-game "monday" you choose what action takes over that slot for the entir
 Early mornings and nights serve to help balance the players stats. Mornings even opening the possibility to take "map" events which give different stat boosts and events. For example, if holiness has been exhausted to a low enough amount, you can pray during either period at the cost of your reputation. Its a game of keeping your numbers balances and also in the favor of which route you might want to take.
 
 # Characters and Dialogue
+At the top of the `script.rpy` file, I've established a lot of "Character"s. In this context, a character is an object with some established properties. From their name, to their default sprite. In my project, I've added a "callback" voice as well as a Click To Continue Icon respectively. The defined variables that represent the object can be used later in dialogue.
+```sh
+define amb1 = Character("Ambrosia", image="Ambrosia", ctc="ctc_heart", ctc_position="nestled",callback=angel_voice)
+```
+
+<br>
+The following is an excerpt that Ren'py runs as a "say statement", which shows the character along with a dialogue box beneath them.
+```sh
+amb1 default "And my room-- it's all the way on the end of the corridor, right?"
+```
 
 # Stats
 
@@ -244,6 +254,9 @@ One player might meet the conditions and never see that cutscene, while another 
 
 # Calendar 
 
+Established at the top of the `script.rpy` is the variables and lists that make up what works in this game's calendar.
+Months and weeks are sorted into lists of strings, ensuring that each item has a specific order to them. 
+
 ```sh
 define day_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 default day_of_week_number = 1
@@ -256,7 +269,37 @@ default current_month = 0
 default energy = 3
 ```
 
+<br> What day it is currently is tracked by the `day_of_the_week_number` which ticks up with every `day_change`.
+Here's an example of how this is referenced in the `day_display` (found in `day_display.rpy`)
+```sh
+screen day_display():
+    zorder 100
+ 
+    frame:
+        background Image("gui/Day_display.png")
+        #xalign 0.05 yalign 0.1
+        xsize 600 ysize 236
+        hbox:
+            xalign 0.23 yalign 0.43
+            text "[current_month +7] " style "month_display"
+        hbox:
+            style_prefix "day_display"
+            
+            box_wrap True
+            xsize 310 ysize 70
+            
+            xalign 0.9 yalign 0.43
+            text "[day_of_week[current_day]]" 
+            text " [month_day]" 
+            #text "Total days [total_days]"
 
+```
+The text of the day display grabs the day of the week and finds the item in that list corresponding to the current day.
+
+<br>
+
+A day change is handled by a list of elif statements. Whenever this function is called, the day of the week ticks up by one, and resets if this number hits 8. 
+While this changes, the `current_day` will keep track of which item in the list of week strings is the currently happening.  
 ```sh
 
 label day_change:
@@ -298,6 +341,7 @@ label day_change:
         $ current_day ="NUH UH"
     return
 ```
+Month changes opporate similarly to a day change. One count is added to the total amount of days, and a long list of elif statements tracks if this amount exceeds 4 weeks. And under those specific conditions will the month and month_day change.
 ```sh
 label month_change:
     $ total_days += 1
