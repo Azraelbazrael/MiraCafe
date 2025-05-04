@@ -54,6 +54,9 @@ as of 2025, the project's progress has been managed and recorded through Trello.
 <br>
 
 - **SFX**
-
+    - <a href="https://dmochas-assets.itch.io/dmochas-bleeps-pack"> Dialogue Bleeps</a>
+    - <a href="https://souptonic.itch.io/souptonic-sfx-pack-1-ui-sounds"> SoupTonic SFX</a>
+    - <a href="https://hitrison.itch.io/menu-sfx-pack"> Hitrison's MENU SFX </a>
+    - <a href="https://freesound.org/"> freesound.org </a>
 
 <p align="right">(For more information please refer to the <a href="https://github.com/Azraelbazrael/MiraCafe/blob/main/DOCUMENTATION.md">documentation</a>)</p>
